@@ -7,7 +7,7 @@
       </div></router-link>
       <div class="treroad-app-about">
         <p>ABOUT</p>
-        <img class="treroad-app-iosDownload" src="./assets/buttonIosDownload.png" alt="">
+        <a href="https://www.appstore.com/treroad"><img class="treroad-app-iosDownload" src="./assets/buttonIosDownload.png" alt="iosDownload"></a>
       </div>
     </header>
     <router-view/>

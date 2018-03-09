@@ -17,7 +17,7 @@
         <li>聯絡我們</li>
         <li>隱私權政策</li>
       </ul>
-      <img class="treroad-home-appstore" src="../assets/buttonAppstore.png" alt="Appstore">
+      <a href="https://www.appstore.com/treroad"><img class="treroad-home-appstore" src="../assets/buttonAppstore.png" alt="Appstore"></a>
     </footer>
   </div>
 </template>
