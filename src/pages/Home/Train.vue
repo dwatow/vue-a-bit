@@ -122,9 +122,17 @@ export default {
     getStation (station) {
       console.log(station)
       if(this.selectType =='departure') {
-        this.selectStation.departureStation = station
+        if(this.selectStation.arrivalStation == station){
+          alert('起始站與終點站不能相同喲～')
+        }else{
+          this.selectStation.departureStation = station
+        }
       }else if(this.selectType =='arrival') {
-        this.selectStation.arrivalStation = station
+        if(this.selectStation.departureStation == station){
+          alert('起始站與終點站不能相同喲～')
+        }else{
+          this.selectStation.arrivalStation = station
+        }
       }
       
       this.areaShow = false
@@ -217,7 +225,7 @@ export default {
       padding: 0 10px
       position: absolute
       bottom: 100%
-      left: calc(50% - 100px)
+      left: calc(50% - 110px)
       overflow: hidden
       a
         z-index: 2
@@ -285,7 +293,7 @@ export default {
         background-position: 95% center
         box-sizing: border-box
         @media screen and (max-width: 515px)
-          width: 45%
+          width: 48%
           background: white
       input[type="date"]::-webkit-inner-spin-button, input[type="date"]::-webkit-clear-button
         display: none
@@ -301,7 +309,7 @@ export default {
         @media screen and (max-width: 515px)
           width: 50%
           display: inline
-          margin-left: 10px
+          margin-left: 5px
           letter-spacing: 0
         input
           width: 48px
@@ -315,6 +323,7 @@ export default {
           margin-right: 2px
           @media screen and (max-width: 515px)
             width: 44px
+            margin-right: 0
     .treroad-train-startSearch
       width: 120px
       height: 36px

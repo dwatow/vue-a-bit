@@ -9,7 +9,7 @@
     </div>
     <div class="treroad-searchResults-searchResultBackground">
         <div class="treroad-searchResults-searchResult">
-          <div class="treroad-searchResults-resultFilter">
+          <div v-if="show" class="treroad-searchResults-resultFilter">
             <input type="radio" name="filter" id="all" checked>
             <label for="all">全部</label>
             <input type="radio" name="filter" id="timeOfArrival">
@@ -19,12 +19,12 @@
             <input type="radio" name="filter" id="rideTime">
             <label for="rideTime">行車時間</label>
           </div>
-          <div v-for="(shift, index) in shiftList" class="treroad-searchResults-searchResultList" @click="toggleShowInformation(shift)">
+          <div v-for="(shift, index) in shiftList" :data-departureTime="shift.trainInformation.departureTime" class="treroad-searchResults-searchResultList" @click="toggleShowInformation(shift), moveToWatchingTrain(shift)">
             <div class="treroad-searchResults-trainInformation" id="trainInformation">
               <img class="treroad-searchResults-trainInformation-trainIcon" src="../assets/train-icon.png" alt="train">
               <div class="treroad-searchResults-trainInformation-mobileTrainLabel"></div>
               <div class="treroad-searchResults-trainInformation-trips">
-                <p class="treroad-searchResults-trainInformation-title">區間{{shift.trainInformation.trainNumber}}</p>
+                <p class="treroad-searchResults-trainInformation-title">{{shift.trainInformation.trainClassification}}{{shift.trainInformation.trainNumber}}</p>
                 <p class="treroad-searchResults-trainInformation-value">{{shift.trainInformation.departureTime}} - {{shift.trainInformation.arrivalTime}}</p>
               </div>
               <div class="treroad-searchResults-trainInformation-driveTime">
@@ -51,7 +51,7 @@
                 </div>
                 <div class="treroad-searchResults-transferInformation-singleTrainInformation">
                   <img src="../assets/train-icon.png" alt="train">
-                  <p ><span>區間{{transferInformation.trainNumber}}</span><span>{{transferInformation.travelTime}}</span><span>{{transferInformation.price}}元</span></p>
+                  <p ><span>{{transferInformation.trainClassification}}{{transferInformation.trainNumber}}</span><span>{{transferInformation.travelTime}}</span><span>{{transferInformation.price}}元</span></p>
                   <span class="treroad-searchResults-transferInformation-arrivalthoughLine"></span>
                 </div>
                 <div v-if="index != shift.transferInformation.length - 1" class="treroad-searchResults-transferInformation-transferStation">
@@ -88,7 +88,8 @@ export default {
         departureStation: '',
         arrivalStation: '',
       },
-      searchTime: {}
+      searchTime: {},
+      show: false
     }
   },
   computed: {},
@@ -117,6 +118,12 @@ export default {
         console.log(transferInformation[index].style.display)
         transferInformation[index].style.display = 'block'
       }
+    },
+    moveToWatchingTrain (shift) {
+
+      var watchingTrainIndex = this.shiftList.indexOf(shift)
+      var watchingTrain = document.querySelectorAll('.treroad-searchResults-searchResultList')[watchingTrainIndex]
+      window.scrollTo(0, watchingTrain.offsetTop)
     },
     getResult (changeInformation) {
       this.searchTime = this.$store.state.searchTime
@@ -148,13 +155,41 @@ export default {
             travelTime: ``,
             price: 0,
           }
-        var transferInformation = [] 
-        
+        var transferInformation = []
         shift.forEach((train, index) => {
           
           //-----------------------trainInformation-----------------------
           //trainOfTrainClassification
-          trainInformation.trainClassification = shift[0].trainClassification
+          // trainInformation.trainClassification = shift[0].trainClassification
+          if(shift[0].trainClassification == '1108' || shift[0].trainClassification == '1100' || shift[0].trainClassification == '1101' || shift[0].trainClassification == '1104' || shift[0].trainClassification == '1106' || shift[0].trainClassification == '1103' || shift[0].trainClassification == '1105'){
+            trainInformation.trainClassification = '自強'
+          }else if(shift[0].trainClassification == '1115' || shift[0].trainClassification == '1110' || shift[0].trainClassification == '1112' || shift[0].trainClassification == '1111' || shift[0].trainClassification == '1113' || shift[0].trainClassification == '1114'){
+            trainInformation.trainClassification = '莒光'
+          }else if(shift[0].trainClassification == '1131' || shift[0].trainClassification == '1132' || shift[0].trainClassification == '1135' || shift[0].trainClassification == '1120' || shift[0].trainClassification == '1122' || shift[0].trainClassification == '1121' || shift[0].trainClassification == '1140' || shift[0].trainClassification == '1130' || shift[0].trainClassification == '1133' || shift[0].trainClassification == '1151'){
+            trainInformation.trainClassification = '區間'
+          }else if(shift[0].trainClassification == '1102'){
+            trainInformation.trainClassification = '太魯閣'
+          }else if(shift[0].trainClassification == '1107'){
+            trainInformation.trainClassification = '普悠瑪'
+          }
+
+          // switch(shift[0].trainClassification){
+          //   case '1108' || '1100' || '1101' || '1104' || '1106' || '1103' || '1105':
+          //     trainInformation.trainClassification = '自強'
+          //     break
+          //   case '1115' || '1110' || '1112' || '1111' || '1113' || '1114':
+          //     trainInformation.trainClassification = '莒光'
+          //     break
+          //   case '1131' || '1132' || '1135' || '1120' || '1122' || '1121' || '1140' || '1130' || '1133' || '1151':
+          //     trainInformation.trainClassification = '區間'
+          //     break
+          //   case '1102':
+          //     trainInformation.trainClassification = '太魯閣'
+          //     break
+          //   case '1107':
+          //     trainInformation.trainClassification = '太魯閣'
+          //     break
+          // }
 
           //trainOfTrainNumber
           trainInformation.trainNumber = shift[0].trainNumber
@@ -207,6 +242,17 @@ export default {
 
           //transferOfTrainClassification
           transferInformation[index].trainClassification = shift[index].trainClassification
+          if(shift[index].trainClassification == '1108' || shift[index].trainClassification == '1100' || shift[index].trainClassification == '1101' || shift[index].trainClassification == '1104' || shift[index].trainClassification == '1106' || shift[index].trainClassification == '1103' || shift[index].trainClassification == '1105'){
+            transferInformation[index].trainClassification = '自強'
+          }else if(shift[index].trainClassification == '1115' || shift[index].trainClassification == '1110' || shift[index].trainClassification == '1112' || shift[index].trainClassification == '1111' || shift[index].trainClassification == '1113' || shift[index].trainClassification == '1114'){
+            transferInformation[index].trainClassification = '莒光'
+          }else if(shift[index].trainClassification == '1131' || shift[index].trainClassification == '1132' || shift[index].trainClassification == '1135' || shift[index].trainClassification == '1120' || shift[index].trainClassification == '1122' || shift[index].trainClassification == '1121' || shift[index].trainClassification == '1140' || shift[index].trainClassification == '1130' || shift[index].trainClassification == '1133' || shift[index].trainClassification == '1151'){
+            transferInformation[index].trainClassification = '區間'
+          }else if(shift[index].trainClassification == '1102'){
+            transferInformation[index].trainClassification = '太魯閣'
+          }else if(shift[index].trainClassification == '1107'){
+            transferInformation[index].trainClassification = '普悠瑪'
+          }
 
           //transferOfTrainNumber
           transferInformation[index].trainNumber = shift[index].trainNumber
@@ -263,6 +309,20 @@ export default {
     },
     splitDay () {
       this.searchTime.day = this.searchTime.day.split("-")
+    },
+    moveToNowTrain () {
+      var trainAfterNow = this.shiftList.filter(shift => {
+        var shiftHour = Number(shift.trainInformation.departureTime.split(":")[0])
+        var shiftMinute = Number(shift.trainInformation.departureTime.split(":")[1])
+        var nowHour = this.searchTime.time.hour
+        var nowMinute = this.searchTime.time.minute
+        return shiftHour * 60 + shiftMinute > nowHour * 60 + nowMinute
+      })
+
+      var nowTrainIndex = this.shiftList.length - trainAfterNow.length
+
+      var nowTrain = document.querySelectorAll('.treroad-searchResults-searchResultList')[nowTrainIndex]
+      window.scrollTo(0, nowTrain.offsetTop)
     }
   },
   // Life cycle hook
@@ -270,11 +330,16 @@ export default {
   mounted () {
     this.getResult (),
     this.splitDay ()
+  },
+  updated () {
+    this.moveToNowTrain ()
   }
 }
 </script>
 
 <style lang="sass" scoped>
+*
+  scroll-behavior: smooth;
   .treroad-searchResults-page
     width: 100%
     .treroad-searchResults-resultHeader
@@ -321,6 +386,7 @@ export default {
       width: 100%
       min-height: calc(100vh - 170px)
       background: url(../assets/result-background.png)
+      padding-top: 8px
       @media screen and (max-width: 600px)
         padding-top: 16px
       .treroad-searchResults-searchResult
