@@ -35,13 +35,13 @@
                 <p class="treroad-searchResults-trainInformation-title">費用</p>
                 <p class="treroad-searchResults-trainInformation-value">{{shift.trainInformation.price}}</p>
               </div>
-              <div class="treroad-searchResults-trainInformation-numberOfTransfer">
+              <div v-if="searchType == train" class="treroad-searchResults-trainInformation-numberOfTransfer">
                 <p class="treroad-searchResults-trainInformation-title">轉乘</p>
                 <p class="treroad-searchResults-trainInformation-value">{{shift.trainInformation.transfer}}</p>
               </div>
               <img class="treroad-searchResults-trainInformation-downIcon" src="../assets/down.png" alt="down">
             </div>
-            <div class="treroad-searchResults-transferInformation">
+            <div v-if="searchType == train" class="treroad-searchResults-transferInformation">
               <div v-for="(transferInformation, index) in shift.transferInformation" class="treroad-searchResults-transferInformation-transferArea">
                 <div v-if="index == 0" class="treroad-searchResults-transferInformation-departureStation">
                   <p class="treroad-searchResults-transferInformation-departureTime">{{transferInformation.departureTime}}</p>
@@ -138,12 +138,13 @@ export default {
       this.selectStation.arrivalStation = this.$store.state.arrivalStation
       this.searchType = this.$store.state.searchType
       var shiftList = this.$store.state.result
+
       if(this.searchType == 'train'){
         this.changeTrainInformation (shiftList)
       }else if(this.searchType == 'thsr'){
-        console.log('haha')
+        this.changeThsrformation (shiftList)
+        console.log(shiftList)
       }
-      
     },
     changeTrainInformation (shiftList) {
       console.log(shiftList)
@@ -318,6 +319,20 @@ export default {
       })
       console.log(shiftList)
       return this.shiftList = shiftList
+    },
+    changeThsrformation (shiftList) {
+      shiftList.routes.map(shift => {
+        var trainInformation = {
+            trainClassification: '高鐵',
+            trainNumber: '',
+            departureTime: '',
+            arrivalTime: '',
+            travelTime: '',
+            price: 0,
+            transfer: 0
+          }
+        console.log(shift)
+      })
     },
     splitDay () {
       this.searchTime.day = this.searchTime.day.split("-")
