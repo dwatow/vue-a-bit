@@ -1,6 +1,6 @@
 # treroad
 
-> Check the train v2
+> Check the train
 
 ## Build Setup
 
