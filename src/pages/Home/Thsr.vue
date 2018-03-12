@@ -21,9 +21,9 @@
         <option value="">今天 10月30日</option>
       </select> -->
       <div class="treroad-thsr-hourAndMinute">
-        <input type="text" maxlength="2" v-model="this.searchTime.time.hour">
+        <input type="text" maxlength="2" v-model="searchTime.time.hour">
         時
-        <input type="text" maxlength="2" v-model="this.searchTime.time.minute">
+        <input type="text" maxlength="2" v-model="searchTime.time.minute">
         分
       </div>
     </div>

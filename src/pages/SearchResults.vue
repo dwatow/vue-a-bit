@@ -3,7 +3,7 @@
     <div class="treroad-searchResults-resultHeader">
       <div class="treroad-searchResults-queryCondition">
         <p class="treroad-searchResults-trainRoute">{{selectStation.departureStation}} <img src="../assets/arrow.png" alt=""> {{selectStation.arrivalStation}}</p>
-        <p class="treroad-searchResults-searchTime">{{this.searchTime.day[0]}}年{{this.searchTime.day[1]}}月{{this.searchTime.day[2]}}日({{searchTime.week}}) {{searchTime.time.hour}}:{{searchTime.time.minute}}</p>
+        <p class="treroad-searchResults-searchTime">{{this.searchTime.day[0]}}年{{this.searchTime.day[1]}}月{{this.searchTime.day[2]}}日({{searchTime.week}}) {{searchTime.time.stringHour}}:{{searchTime.time.stringMinute}}</p>
       </div>
       <router-link to="/home"><button>重新查詢</button></router-link>
     </div>
@@ -151,11 +151,25 @@ export default {
     // },
     getResult () {
       this.searchTime = this.$store.state.searchTime
-      console.log(this.searchTime)
+      
       this.selectStation.departureStation = this.$store.state.departureStation
       this.selectStation.arrivalStation = this.$store.state.arrivalStation
       this.searchType = this.$store.state.searchType
       var shiftList = this.$store.state.result
+
+      if(this.searchTime.time.minute < 10){
+        this.searchTime.time.stringMinute = `0${this.searchTime.time.minute}`
+      }else{
+        this.searchTime.time.stringMinute = this.searchTime.time.minute
+      }
+
+      if(this.searchTime.time.hour < 10){
+        this.searchTime.time.stringHour = `0${this.searchTime.time.hour}`
+      }else{
+        this.searchTime.time.stringHour = this.searchTime.time.hour
+      }
+
+      console.log(this.searchTime)
 
       console.log(this.searchType)
       if(this.searchType == 'train'){
@@ -340,9 +354,13 @@ export default {
     },
     changeThsrformation (shiftList) {
       console.log(shiftList)
+
       shiftList.routes.sort((a, b) => {
-        return a.departureTime - b.departureTime
+        let frontTime = new Date(a.departureTime)
+        let backTime = new Date(b.departureTime)
+        return frontTime - backTime
       })
+
       var shiftList = shiftList.routes.map(shift => {
         var trainInformation = {
             trainClassification: '',
@@ -405,8 +423,14 @@ export default {
     },
     moveToNowTrain () {
       var trainAfterNow = this.shiftList.filter(shift => {
-        var shiftHour = Number(shift.trainInformation.departureTime.split(":")[0])
-        var shiftMinute = Number(shift.trainInformation.departureTime.split(":")[1])
+        if(this.searchType == 'train'){
+          var shiftHour = Number(shift.trainInformation.departureTime.split(":")[0])
+          var shiftMinute = Number(shift.trainInformation.departureTime.split(":")[1])
+        }else if(this.searchType == 'thsr'){
+          var shiftHour = Number(shift.departureTime.split(":")[0])
+          var shiftMinute = Number(shift.departureTime.split(":")[1])
+        }
+        
         var nowHour = this.searchTime.time.hour
         var nowMinute = this.searchTime.time.minute
         return shiftHour * 60 + shiftMinute > nowHour * 60 + nowMinute
