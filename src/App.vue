@@ -48,6 +48,9 @@ export default {
     box-sizing: border-box
     display: flex
     justify-content: space-between
+    position: sticky
+    top: 0
+    z-index: 10
     .treroad-app-logo, .treroad-app-about
       display: inline-block
       vertical-align: top

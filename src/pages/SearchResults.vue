@@ -19,7 +19,7 @@
             <input type="radio" name="filter" id="rideTime">
             <label for="rideTime">行車時間</label>
           </div>
-          <div v-for="(shift, index) in shiftList" :data-departureTime="shift.trainInformation.departureTime" class="treroad-searchResults-searchResultList" @click="toggleShowInformation(shift), moveToWatchingTrain(shift)">
+          <div v-for="(shift, index) in shiftList" :data-departureTime="shift.trainInformation.departureTime" class="treroad-searchResults-searchResultList" @click="toggleShowInformation(shift)">
             <div class="treroad-searchResults-trainInformation" id="trainInformation">
               <img class="treroad-searchResults-trainInformation-trainIcon" src="../assets/train-icon.png" alt="train">
               <div class="treroad-searchResults-trainInformation-mobileTrainLabel"></div>
@@ -101,30 +101,35 @@ export default {
       var transferInformation = document.querySelectorAll(".treroad-searchResults-transferInformation")
       var downIcon = document.querySelectorAll('.treroad-searchResults-trainInformation-downIcon')
       var index = this.shiftList.indexOf(shift)
-      console.log(transferInformation[index])
-      console.log(index)
+      // console.log(transferInformation[index])
+      // console.log(index)
+
+      transferInformation.forEach(information => {
+        if(information == transferInformation[index]) return
+        information.style.display = 'none'
+      })
+      downIcon.forEach(icon => {
+        if(icon == downIcon[index]) return
+        icon.style.transform = 'rotate(0deg)'
+      })
+
       if(downIcon[index].style.transform == 'rotate(-180deg)') {
-        console.log(downIcon[index].style.transform)
         downIcon[index].style.transform = 'rotate(0deg)'
       }else{
-        console.log(downIcon[index].style.transform)
         downIcon[index].style.transform = 'rotate(-180deg)'
       }
      
       if(transferInformation[index].style.display == 'block') {
-        console.log(transferInformation[index].style.display)
         transferInformation[index].style.display = 'none'
       }else{
-        console.log(transferInformation[index].style.display)
         transferInformation[index].style.display = 'block'
       }
     },
-    moveToWatchingTrain (shift) {
-
-      var watchingTrainIndex = this.shiftList.indexOf(shift)
-      var watchingTrain = document.querySelectorAll('.treroad-searchResults-searchResultList')[watchingTrainIndex]
-      window.scrollTo(0, watchingTrain.offsetTop)
-    },
+    // moveToWatchingTrain (shift) {
+    //   var watchingTrainIndex = this.shiftList.indexOf(shift)
+    //   var watchingTrain = document.querySelectorAll('.treroad-searchResults-searchResultList')[watchingTrainIndex]
+    //   window.scrollTo(0, watchingTrain.offsetTop)
+    // },
     getResult (changeInformation) {
       this.searchTime = this.$store.state.searchTime
       console.log(this.searchTime)
@@ -322,7 +327,7 @@ export default {
       var nowTrainIndex = this.shiftList.length - trainAfterNow.length
 
       var nowTrain = document.querySelectorAll('.treroad-searchResults-searchResultList')[nowTrainIndex]
-      window.scrollTo(0, nowTrain.offsetTop)
+      window.scrollTo(0, (nowTrain.offsetTop - 175))
     }
   },
   // Life cycle hook
@@ -343,16 +348,21 @@ export default {
   .treroad-searchResults-page
     width: 100%
     .treroad-searchResults-resultHeader
-      width: 575px
+      width: 100%
       height: 110px
       margin: 0 auto
       box-sizing: border-box
       display: flex
       justify-content: space-between
+      background: white
       align-items: flex-end
       box-sizing: border-box
-      padding-bottom: 6px
+      padding: 0 calc((100% - 575px) / 2) 6px calc((100% - 575px) / 2)
       overflow: hidden
+      position: sticky
+      box-shadow: 0px 1px 4px rgba(0, 0, 0, .1)
+      top: 60px
+      z-index: 10
       @media screen and (max-width: 600px)
         width: 100%
         justify-content: flex-end

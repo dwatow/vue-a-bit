@@ -106,6 +106,13 @@ export default {
       })
       .then((response) => {
         console.log(response.data.payload)
+        if(this.selectStation.departureStation == '起始站'){
+          alert('請選擇您要出發的站別～')
+          return
+        }else if(this.selectStation.arrivalStation == '終點站'){
+          alert('請選擇您要到達的站別～')
+          return
+        }
         vm.$store.state.result = response.data.payload
         vm.$store.state.searchTime = vm.searchTime
         vm.$store.state.departureStation = vm.selectStation.departureStation
@@ -178,13 +185,6 @@ export default {
       this.searchTime.time.hour = hour
       this.searchTime.time.minute = minute
       this.searchTime.week = this.searchTime.week[week]
-      console.log(year)
-      console.log(month)
-      console.log(day)
-      console.log(today)
-      console.log(hour)
-      console.log(minute)
-      console.log(this.searchTime.week)
     }
   },
   // Life cycle hook
