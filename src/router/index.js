@@ -9,6 +9,7 @@ Vue.use(Router)
 const Home = () => import(/* webpackChunkName: "pages" */ '@/pages/Home')
 const SearchResults = () => import(/* webpackChunkName: "pages" */ '@/pages/SearchResults')
 const Train = () => import(/* webpackChunkName: "pages" */ '@/pages/Home/Train')
+const Thsr = () => import(/* webpackChunkName: "pages" */ '@/pages/Home/Thsr')
 const MRT = () => import(/* webpackChunkName: "pages" */ '@/pages/Home/MRT')
 
 export default new Router({
@@ -27,8 +28,13 @@ export default new Router({
         {
           path: 'train',
           name: 'Train',
-          meta: { title: '雙鐵查詢' },
+          meta: { title: '台鐵查詢' },
           component: Train
+        },{
+          path: 'thsr',
+          name: 'Thsr',
+          meta: { title: '高鐵查詢' },
+          component: Thsr
         },
         {
           path: 'mrt',

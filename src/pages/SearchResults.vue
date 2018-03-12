@@ -89,7 +89,8 @@ export default {
         arrivalStation: '',
       },
       searchTime: {},
-      show: false
+      show: false,
+      searchType: ''
     }
   },
   computed: {},
@@ -130,15 +131,21 @@ export default {
     //   var watchingTrain = document.querySelectorAll('.treroad-searchResults-searchResultList')[watchingTrainIndex]
     //   window.scrollTo(0, watchingTrain.offsetTop)
     // },
-    getResult (changeInformation) {
+    getResult () {
       this.searchTime = this.$store.state.searchTime
       console.log(this.searchTime)
       this.selectStation.departureStation = this.$store.state.departureStation
       this.selectStation.arrivalStation = this.$store.state.arrivalStation
+      this.searchType = this.$store.state.searchType
       var shiftList = this.$store.state.result
-      this.changeInformation (shiftList)
+      if(this.searchType == 'train'){
+        this.changeTrainInformation (shiftList)
+      }else if(this.searchType == 'thsr'){
+        console.log('haha')
+      }
+      
     },
-    changeInformation (shiftList) {
+    changeTrainInformation (shiftList) {
       console.log(shiftList)
       var shiftList = shiftList.map(shift => {
         var trainInformation = {

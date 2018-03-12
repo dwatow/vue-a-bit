@@ -2,8 +2,10 @@
   <div class="treroad-train-search">
     <div class="treroad-train-switch">
       <div class="treroad-train-trainSwitch"></div>
+      <div class="treroad-train-thsrSwitch"></div>
       <div class="treroad-train-mrtSwitch"></div>
-      <span class="treroad-train-trainSwitchSpan">雙鐵查詢</span>
+      <span class="treroad-train-trainSwitchSpan">台鐵查詢</span>
+      <router-link to="thsr"><span class="treroad-train-thsrSwitchSpan">高鐵查詢</span></router-link>
       <router-link to="mrt"><span class="treroad-train-mrtSwitchSpan">捷運轉乘</span></router-link>
     </div>
     <div class="treroad-train-selectStation">
@@ -71,7 +73,8 @@ export default {
         week: ['日', '一', '二', '三', '四', '五', '六']
       },
       areaShow: false,
-      stationShow: false
+      stationShow: false,
+      searchType: 'train'
     }
   },
   computed: {
@@ -87,7 +90,7 @@ export default {
     getTrainStation () {
       axios({
         method: 'get',
-        url: '/static/json/train.json'
+        url: '/static/json/station.json'
       })
       .then((response) => {
         console.log(response.data.train)
@@ -117,6 +120,7 @@ export default {
         vm.$store.state.searchTime = vm.searchTime
         vm.$store.state.departureStation = vm.selectStation.departureStation
         vm.$store.state.arrivalStation = vm.selectStation.arrivalStation
+        vm.$store.state.searchType = vm.searchType
         vm.$router.push({ path: '/searchresults' })
       })
     },
@@ -220,39 +224,46 @@ export default {
     .treroad-train-switch
       display: flex
       justify-content: space-around
-      width: 200px
+      width: 350px
       height: 40px
-      padding: 0 10px
       position: absolute
       bottom: 100%
-      left: calc(50% - 110px)
+      left: calc(50% - 175px)
       overflow: hidden
       a
         z-index: 2
         margin-top: 15px
         text-decoration: none
-      .treroad-train-trainSwitch, .treroad-train-mrtSwitch
-        width: 45%
+      .treroad-train-trainSwitch, .treroad-train-thsrSwitch, .treroad-train-mrtSwitch
+        width: 30%
         height: 100%
         position: absolute
         border-radius: 10px
         transform: perspective(.5em) rotateX(2deg)
         bottom: -10px
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, .1)
       .treroad-train-trainSwitch
         background: #eff2f5
         left: 5%
         z-index: 1
+      .treroad-train-thsrSwitch
+        background: #44c7a8
+        left: 35%
       .treroad-train-mrtSwitch
         background: #44c7a8
         right: 5%
-      .treroad-train-trainSwitchSpan
-        color: #4a4a4a
-        z-index: 2
-        margin-top: 15px
-      .treroad-train-mrtSwitchSpan
+      .treroad-train-mrtSwitchSpan, .treroad-train-thsrSwitchSpan, .treroad-train-trainSwitchSpan
+        position: absolute
+        top: 15px
         color: white
         z-index: 2
-        margin-top: 15px
+      .treroad-train-trainSwitchSpan
+        color: #4a4a4a
+        left: calc(50% - 138px)
+      .treroad-train-thsrSwitchSpan
+        left: calc(50% - 32px)
+      .treroad-train-mrtSwitchSpan
+        left: calc(50% + 73px)
     .treroad-train-selectStation
       position: relative
       @media screen and (max-width: 515px)

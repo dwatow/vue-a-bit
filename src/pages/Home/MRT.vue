@@ -2,8 +2,10 @@
   <div class="treroad-mrt-search">
     <div class="treroad-mrt-switch">
       <div class="treroad-mrt-trainSwitch"></div>
+      <div class="treroad-mrt-thsrSwitch"></div>
       <div class="treroad-mrt-mrtSwitch"></div>
-      <router-link to="train"><span class="treroad-mrt-trainSwitchSpan">雙鐵查詢</span></router-link>
+      <router-link to="train"><span class="treroad-mrt-trainSwitchSpan">台鐵查詢</span></router-link>
+      <router-link to="thsr"><span class="treroad-mrt-thsrSwitchSpan">高鐵查詢</span></router-link>
       <span class="treroad-mrt-mrtSwitchSpan">捷運轉乘</span>
     </div>
     <div class="treroad-mrt-selectStation">
@@ -12,7 +14,7 @@
       <input type="button" value="終點站">
       <img class="transfer" src="../../assets/iconTransfer.png" alt="transfer">
     </div>
-    <button class="startSearch">開始查詢</button>
+    <button class="treroad-mrt-startSearch">開始查詢</button>
   </div>
 </template>
 
@@ -55,39 +57,42 @@ export default {
     .treroad-mrt-switch
       display: flex
       justify-content: space-around
-      width: 200px
+      width: 350px
       height: 40px
-      padding: 0 10px
       position: absolute
       bottom: 100%
-      left: calc(50% - 100px)
+      left: calc(50% - 175px)
       overflow: hidden
-      a
-        z-index: 2
-        margin-top: 15px
-        text-decoration: none
-      .treroad-mrt-trainSwitch, .treroad-mrt-mrtSwitch
-        width: 45%
+      .treroad-mrt-trainSwitch, .treroad-mrt-thsrSwitch, .treroad-mrt-mrtSwitch
+        width: 30%
         height: 100%
         position: absolute
         border-radius: 10px
         transform: perspective(.5em) rotateX(2deg)
         bottom: -10px
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, .1)
       .treroad-mrt-trainSwitch
         background: #44c7a8
         left: 5%
+      .treroad-mrt-thsrSwitch
+        background: #44c7a8
+        left: 35%
       .treroad-mrt-mrtSwitch
         background: #eff2f5
         right: 5%
         z-index: 1
-      .treroad-mrt-trainSwitchSpan
+      .treroad-mrt-mrtSwitchSpan, .treroad-mrt-thsrSwitchSpan, .treroad-mrt-trainSwitchSpan
+        position: absolute
+        top: 15px
         color: white
         z-index: 2
-        margin-top: 15px
+      .treroad-mrt-trainSwitchSpan
+        left: calc(50% - 138px)
+      .treroad-mrt-thsrSwitchSpan
+        left: calc(50% - 32px)
       .treroad-mrt-mrtSwitchSpan
         color: #4a4a4a
-        z-index: 2
-        margin-top: 15px
+        left: calc(50% + 73px)
     .treroad-mrt-selectStation
       position: relative
       input
@@ -106,7 +111,7 @@ export default {
         bottom: 30px
         left: calc(50% - 14px)
         cursor: pointer
-    .startSearch
+    .treroad-mrt-startSearch
       width: 120px
       height: 36px
       border-radius: 18px
