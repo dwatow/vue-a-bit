@@ -19,7 +19,7 @@
             <input type="radio" name="filter" id="rideTime">
             <label for="rideTime">行車時間</label>
           </div>
-          <div v-for="(shift, index) in shiftList" :data-departureTime="shift.trainInformation.departureTime" class="treroad-searchResults-searchResultList" @click="toggleShowInformation(shift)">
+          <div v-if="searchType == 'train'" v-for="(shift, index) in shiftList" class="treroad-searchResults-searchResultList" @click="toggleShowInformation(shift)">
             <div class="treroad-searchResults-trainInformation" id="trainInformation">
               <img class="treroad-searchResults-trainInformation-trainIcon" src="../assets/train-icon.png" alt="train">
               <div class="treroad-searchResults-trainInformation-mobileTrainLabel"></div>
@@ -41,7 +41,7 @@
               </div>
               <img class="treroad-searchResults-trainInformation-downIcon" src="../assets/down.png" alt="down">
             </div>
-            <div v-if="searchType == train" class="treroad-searchResults-transferInformation">
+            <div class="treroad-searchResults-transferInformation">
               <div v-for="(transferInformation, index) in shift.transferInformation" class="treroad-searchResults-transferInformation-transferArea">
                 <div v-if="index == 0" class="treroad-searchResults-transferInformation-departureStation">
                   <p class="treroad-searchResults-transferInformation-departureTime">{{transferInformation.departureTime}}</p>
@@ -70,6 +70,24 @@
                   <p class="treroad-searchResults-transferInformation-station">{{transferInformation.arrivalStation}}</p>
                   <span class="treroad-searchResults-transferInformation-arrivalLine"></span>
                 </div>
+              </div>
+            </div>
+          </div>
+          <div v-if="searchType == 'thsr'" v-for="shift in shiftList" class="treroad-searchResults-searchResultList">
+            <div class="treroad-searchResults-trainInformation" id="trainInformation">
+              <img class="treroad-searchResults-trainInformation-trainIcon" src="../assets/train-icon.png" alt="train">
+              <div class="treroad-searchResults-trainInformation-mobileTrainLabel"></div>
+              <div class="treroad-searchResults-trainInformation-trips">
+                <p class="treroad-searchResults-trainInformation-title">{{shift.trainClassification}}{{shift.trainNumber}}</p>
+                <p class="treroad-searchResults-trainInformation-value">{{shift.departureTime}} - {{shift.arrivalTime}}</p>
+              </div>
+              <div class="treroad-searchResults-trainInformation-driveTime">
+                <p class="treroad-searchResults-trainInformation-title">行車時間</p>
+                <p class="treroad-searchResults-trainInformation-value">{{shift.travelTime}}</p>
+              </div>
+              <div class="treroad-searchResults-trainInformation-fare">
+                <p class="treroad-searchResults-trainInformation-title">費用</p>
+                <p class="treroad-searchResults-trainInformation-value">{{shift.price}}</p>
               </div>
             </div>
           </div>
@@ -139,11 +157,11 @@ export default {
       this.searchType = this.$store.state.searchType
       var shiftList = this.$store.state.result
 
+      console.log(this.searchType)
       if(this.searchType == 'train'){
         this.changeTrainInformation (shiftList)
       }else if(this.searchType == 'thsr'){
         this.changeThsrformation (shiftList)
-        console.log(shiftList)
       }
     },
     changeTrainInformation (shiftList) {
@@ -207,7 +225,7 @@ export default {
           //trainOfTrainNumber
           trainInformation.trainNumber = shift[0].trainNumber
 
-          //departureTime
+          //trainOfDepartureTime
           var trainDepartureTime = shift[0].routes[0].departureTime
           var trainDepartureDate = new Date(trainDepartureTime)
           var trainDepartureHour = trainDepartureDate.getHours()
@@ -321,18 +339,66 @@ export default {
       return this.shiftList = shiftList
     },
     changeThsrformation (shiftList) {
-      shiftList.routes.map(shift => {
+      console.log(shiftList)
+      shiftList.routes.sort((a, b) => {
+        return a.departureTime - b.departureTime
+      })
+      var shiftList = shiftList.routes.map(shift => {
         var trainInformation = {
-            trainClassification: '高鐵',
+            trainClassification: '',
             trainNumber: '',
             departureTime: '',
             arrivalTime: '',
             travelTime: '',
-            price: 0,
-            transfer: 0
+            price: 0
           }
-        console.log(shift)
+
+        //thsrOfTrainClassification
+        trainInformation.trainClassification = '高鐵'
+
+        //thsrOfTrainNumber
+        trainInformation.trainNumber = shift.trainNumber
+
+        //thsrOfDepartureTime
+        var trainDepartureTime = shift.departureTime
+        var trainDepartureDate = new Date(trainDepartureTime)
+        var trainDepartureHour = trainDepartureDate.getHours()
+        var trainDepartureMinute = trainDepartureDate.getMinutes()
+        if(trainDepartureHour < 10) trainDepartureHour = `0${trainDepartureHour}`
+        if(trainDepartureMinute < 10) trainDepartureMinute = `0${trainDepartureMinute}`
+        trainInformation.departureTime = `${trainDepartureHour}:${trainDepartureMinute}`
+
+        //thsrOfArrivalTime
+        var trainArrivalTime = shift.arrivalTime
+        var trainArrivalDate = new Date(trainArrivalTime)
+        var trainArrivalHour = trainArrivalDate.getHours()
+        var trainArrivalMinute = trainArrivalDate.getMinutes()
+        if(trainArrivalHour < 10) trainArrivalHour = `0${trainArrivalHour}`
+        if(trainArrivalMinute < 10) trainArrivalMinute = `0${trainArrivalMinute}`
+        trainInformation.arrivalTime = `${trainArrivalHour}:${trainArrivalMinute}`
+
+        //thsrOfTravelTime
+        var trainTravelHours = trainArrivalHour - trainDepartureHour
+        if(trainTravelHours < 0) trainTravelHours = trainTravelHours + 24
+        var trainTravelMinutes = trainArrivalMinute - trainDepartureMinute
+
+        var trainTravelTime = (trainTravelHours * 60) + trainTravelMinutes
+        var trainRealTravelHours = (trainTravelTime - (trainTravelTime % 60)) / 60
+        var trainRealTravelMinutes = trainTravelTime % 60
+        if(trainRealTravelMinutes < 10) trainRealTravelMinutes = `0${trainRealTravelMinutes}`
+        if(trainTravelTime > 60){
+          trainInformation.travelTime = `${trainRealTravelHours}時${trainRealTravelMinutes}分`
+        }else{
+          trainInformation.travelTime = `${trainRealTravelMinutes}分`
+        }
+        
+        //thsrOfPrice
+        trainInformation.price = shiftList.price.標準
+
+        return trainInformation
       })
+      console.log(shiftList)
+      return this.shiftList = shiftList
     },
     splitDay () {
       this.searchTime.day = this.searchTime.day.split("-")
