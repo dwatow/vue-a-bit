@@ -35,7 +35,7 @@
                 <p class="treroad-searchResults-trainInformation-title">費用</p>
                 <p class="treroad-searchResults-trainInformation-value">{{shift.trainInformation.price}}</p>
               </div>
-              <div v-if="searchType == train" class="treroad-searchResults-trainInformation-numberOfTransfer">
+              <div class="treroad-searchResults-trainInformation-numberOfTransfer">
                 <p class="treroad-searchResults-trainInformation-title">轉乘</p>
                 <p class="treroad-searchResults-trainInformation-value">{{shift.trainInformation.transfer}}</p>
               </div>
@@ -122,6 +122,7 @@ export default {
       var index = this.shiftList.indexOf(shift)
       // console.log(transferInformation[index])
       // console.log(index)
+
 
       transferInformation.forEach(information => {
         if(information == transferInformation[index]) return
@@ -422,6 +423,14 @@ export default {
       this.searchTime.day = this.searchTime.day.split("-")
     },
     moveToNowTrain () {
+      var trainInformation = document.querySelectorAll('.treroad-searchResults-trainInformation')
+      console.log(trainInformation)
+      if(this.searchType == 'train'){
+        trainInformation.forEach(information => {
+          information.style.cursor = 'pointer'
+        })
+      }
+
       var trainAfterNow = this.shiftList.filter(shift => {
         if(this.searchType == 'train'){
           var shiftHour = Number(shift.trainInformation.departureTime.split(":")[0])
@@ -555,7 +564,6 @@ export default {
             align-items: center
             box-sizing: border-box
             position: relative
-            cursor: pointer
             background: white
             border-bottom: 1px solid rgb(219, 219, 219)
             @media screen and (max-width: 600px)
