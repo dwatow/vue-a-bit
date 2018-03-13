@@ -25,4 +25,5 @@ $ npm run build
 分享貢獻
 
 - Chris
-    - 題目...
+    - babel-core
+    - node-sass
