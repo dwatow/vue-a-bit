@@ -28,3 +28,5 @@ $ npm run build
     - 題目...
 - Andy
 	- 分享一下iView
+-yoyo
+	- babel-core
