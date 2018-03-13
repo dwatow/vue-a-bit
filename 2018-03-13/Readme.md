@@ -31,4 +31,5 @@ $ npm run build
 	- 分享一下iView
 - Arel
 	- npm
-    
+-yoyo
+	- babel-core
