@@ -26,3 +26,16 @@ $ npm run build
 
 - Chris
     - 題目...
+
+
+
+
+
+
+
+
+
+
+    
+- Jim
+   - Vue 一點，component 拆解
