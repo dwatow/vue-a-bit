@@ -29,5 +29,10 @@ $ npm run build
     - node-sass
 - Andy
 	- 分享一下iView
+<<<<<<< HEAD
+-yoyo
+	- babel-core
+=======
 
     
+>>>>>>> 9d9bf5e08f1c4045b8bad9bed53a19abbcbeada2
