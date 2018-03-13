@@ -29,6 +29,7 @@ $ npm run build
     - node-sass
 - Andy
 	- 分享一下iView
+    - 上傳時不把`.ds_store`上傳
 - yoyo
 	- babel-core
 - 日安
