@@ -35,3 +35,5 @@ $ npm run build
 	- webpack(?
 - Jim
    - Vue 一點，component 拆解
+- Arel
+   - npm
