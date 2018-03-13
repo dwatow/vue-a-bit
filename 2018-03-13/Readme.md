@@ -29,5 +29,15 @@ $ npm run build
     - node-sass
 - Andy
 	- 分享一下iView
+<<<<<<< HEAD
 - Jim
    - Vue 一點，component 拆解
+=======
+<<<<<<< HEAD
+-yoyo
+	- babel-core
+=======
+
+    
+>>>>>>> 9d9bf5e08f1c4045b8bad9bed53a19abbcbeada2
+>>>>>>> 22db1638de85cd9e64b547928ab9815a0f782404
