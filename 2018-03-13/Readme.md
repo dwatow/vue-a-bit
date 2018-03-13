@@ -27,3 +27,7 @@ $ npm run build
 - Chris
     - babel-core
     - node-sass
+- Andy
+	- 分享一下iView
+
+    
