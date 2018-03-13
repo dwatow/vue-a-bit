@@ -29,7 +29,9 @@ $ npm run build
     - node-sass
 - Andy
 	- 分享一下iView
-- Arel
-	- npm
 - yoyo
 	- babel-core
+- 日安
+	- webpack(?
+- Jim
+   - Vue 一點，component 拆解
