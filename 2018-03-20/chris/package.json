@@ -1,0 +1,24 @@
+{
+  "name": "chris-loader",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "babel-jest": "^22.4.1",
+    "babel-preset-env": "^1.6.1",
+    "jest": "^22.4.2",
+    "memory-fs": "^0.4.1",
+    "webpack": "^4.1.1"
+  },
+  "scripts": {
+    "complier": "node ./test/index.js",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
