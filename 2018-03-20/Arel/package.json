@@ -1,0 +1,19 @@
+{
+  "name": "Arel",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-jest": "^23.0.0-alpha.0",
+    "babel-preset-env": "^1.6.1",
+    "jest": "^22.4.2",
+    "memory-fs": "^0.4.1",
+    "webpack": "^4.1.1"
+  }
+}
