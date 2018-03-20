@@ -24,20 +24,30 @@
 **分享**
 
 - teng
-    - package-lock.json
+	- webpack.config.js
+  - package-lock.json
 - yoyo
-    - node
+	- node
 - Jim
-    - const nav = () => import
-    - 為什麼沒有預設 .babelrc
+  - `const nav = () => import`
+  - 為什麼沒有預設 .babelrc
 - Andy
-    -   分享一下iView
-    -   上傳時不把`.ds_store`上傳
+  - 分享一下iView
+  - 上傳時不把 `.ds_store` 上傳
+- Arel
+	- webpack 好用的 plugin
+	- HtmlWebpackPlugin
+	- CleanWebpackPlugin
 - 日安
-    -   webpack(?
+  - webpack(?
+	- HtmlWebpackPlugin
 - Chris
-    - async, await
+  - `async`, `await`
 
 **討論**
 
 什麼是 loader?
+- Andy
+	- jest 的問題造成編譯、執行失敗
+- Jim
+	- [Webpack 4 的新特色](https://www.valentinog.com/blog/webpack-4-tutorial/)
