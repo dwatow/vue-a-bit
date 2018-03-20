@@ -28,14 +28,15 @@
 - yoyo
     - node
 - Jim
-    - const nav = () => import
+    - `const nav = () => import`
+    - 為什麼沒有預設 .babelrc
 -   Andy
-    -   分享一下iView
-    -   上傳時不把`.ds_store`上傳
+    - 分享一下iView
+    - 上傳時不把 `.ds_store` 上傳
 -   日安
-    -   webpack(?
+    - webpack(?
 - Chris
-    - async, await
+    - `async`, `await`
 
 **討論**
 
