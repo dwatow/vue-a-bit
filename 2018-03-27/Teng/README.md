@@ -9,6 +9,7 @@
 
 
 ```
+
 img src="../assets/images/living-room.jpg" alt=""
 
 background:url(../assets/images/buttons.png) no-repeat;
