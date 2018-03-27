@@ -7,9 +7,10 @@
 ### html 和 css import image
 - 跟以前一樣，由目前檔案所在位置引入目標檔案
 
-```
 
-<img src="../assets/images/living-room.jpg" alt="">
+```
+img src="../assets/images/living-room.jpg" alt=""
+
 background:url(../assets/images/buttons.png) no-repeat;
 
 ```
