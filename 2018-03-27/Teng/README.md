@@ -1,21 +1,17 @@
 # template4
 
-> A Vue.js project
+## 檔案架構
+- 把component都放在src/components
+- images都放在src/assets/images
 
-## Build Setup
+### html 和 css import image
+- 跟以前一樣，由目前檔案所在位置引入目標檔案
+```
+<img src="../assets/images/living-room.jpg" alt="">
 
-``` bash
-# install dependencies
-npm install
+background:url(../assets/images/buttons.png) no-repeat;
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
 ```
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+### 使用bootstrap
+- 在index.html的head引入就好
