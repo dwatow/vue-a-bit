@@ -1,5 +1,9 @@
 # arel
 
+## 實作引入 bootstrap + JQuery 至 Vue 專案
+
+引入 scss 時對 global files 難以掌握
+
 > A Vue.js project
 
 ## Build Setup
