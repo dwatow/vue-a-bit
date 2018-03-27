@@ -44,7 +44,14 @@ module.exports = {
             'scss': [
               'vue-style-loader',
               'css-loader',
-              'sass-loader'      
+              'sass-loader',
+              {
+                // resources loader enable global scss files
+                loader: 'sass-resources-loader',
+                options: {
+                  resources: path.resolve(__dirname, './src/assets/styles/global.scss'), // for example
+                },
+              },              
             ],
             'sass': [
               'vue-style-loader',
