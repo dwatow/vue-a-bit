@@ -1,0 +1,46 @@
+/*<!--~~~~~~~~~~~~~~~~~~-->*/
+/*<!--  Navigation bar  -->*/
+/*<!--~~~~~~~~~~~~~~~~~~-->*/
+
+header{
+  background-color:#241b18;
+  border-bottom: 1px solid #ffffff;
+}
+
+.headerStyle {
+  padding: 20px 0;
+}
+
+
+header ul {
+  padding-left: 0;
+  margin: 0;
+}
+
+
+header li {
+  display: inline-block;
+  margin-top: 10px;
+}
+
+
+@media screen and (max-width: 576px) {
+    header li {
+        display:block;
+        text-align: center;
+    }
+}
+
+
+header li a {
+  color: #ffffff;
+  font-family: "Oswald";
+  font-size: 16px;
+  padding: 0 15px;
+}
+
+
+header li a:hover{
+  color: #ffc947;
+  text-decoration: none;
+}
