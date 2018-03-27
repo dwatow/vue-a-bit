@@ -1,2 +1,2 @@
 UglifyJS Plugin 作用
-實作 css loader
+實作 css loader(補)
