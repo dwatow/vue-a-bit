@@ -5,7 +5,6 @@
 </template>
 
 <script>
-
 export default {
   data () {
     return {
@@ -17,9 +16,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~bootstrap/scss/functions';
-@import '~bootstrap/scss/variables';
-@import '~bootstrap/scss/mixins/breakpoints';
 
 .theme-header {
 	background: #FFF;
@@ -34,7 +30,5 @@ export default {
 		width: 100%;
 	}
 }
-
-
 
 </style>

@@ -9,7 +9,7 @@
 			<li :class="{active: item.active}" class="nav-item" v-for="item in listNames">
 				<a class="nav-link" href="#">{{item.value}}</a>
 			</li>
-		</ul>		
+		</ul>
 	</div>	
 </div>
 
