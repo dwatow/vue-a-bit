@@ -3,8 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 import 'bootstrap';
-// import 'bootstrap/dist/css/bootstrap.min.css'; //成功
-import 'bootstrap/scss/bootstrap.scss';
+import 'bootstrap/dist/css/bootstrap.min.css'; //成功
+// import 'bootstrap/scss/bootstrap.scss';
 
 Vue.config.productionTip = false
 

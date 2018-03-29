@@ -20,8 +20,8 @@ export default {
   },
   components: {
     myHeader,
-    myBody: myBody,
-    myFooter: myFooter
+    myBody,
+    myFooter
   }
 }
 </script>

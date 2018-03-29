@@ -21,7 +21,6 @@
 
 <script>
 export default {
-  name: 'myHeader',
   data: function () {
         return {
         }
