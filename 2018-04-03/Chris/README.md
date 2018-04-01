@@ -25,14 +25,13 @@
 
 這是一個可以委派事件給 component ，並且在事件的 callback 參數。
 
-在 外層
+**在 外層**
 
-:::warning
-如同 jQuery
 ```javascript=
+//如同 jQuery
 $('myTag').on('myEvent', eventCallback)
 ```
-:::
+
 
 ```html
 <myTag @myEvent="eventCallback" />
@@ -46,7 +45,7 @@ mehtods: {
 }
 ```
 
-在 component
+**在 component**
 
 myMethod 的回傳值，就是 eventCallback 的參數。
 
