@@ -1,5 +1,7 @@
 # vue 的 component + API 練習
 
+[練習結果](https://dwatow.github.io/vue-a-bit/2018-04-03/Chris/)
+
 ## API
 
 放置在 lifecycle 的 `created` ，當時的 data 已初始化完畢，允許賦值。
