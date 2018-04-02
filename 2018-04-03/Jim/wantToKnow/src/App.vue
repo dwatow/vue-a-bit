@@ -1,10 +1,8 @@
 <template>
   <div id="app">
-    //banner
-    //content list
-    //footer
+    <banner-component></banner-component>
     <content-component :nav="list"></content-component>
-
+    <footer-component></footer-component>
   </div>
 </template>
 
@@ -23,9 +21,18 @@ export default {
   data () {
     return {
       'list': [
-        '全部活動',
-        '即將開始活動',
-        '已經結束活動'
+        {
+          'content': '全部活動',
+          'clicked': true
+        },
+        {
+          'content': '即將開始活動',
+          'clicked': false
+        },
+        {
+          'content': '已經結束活動',
+          'clicked': false
+        }
       ]
     }
   },
