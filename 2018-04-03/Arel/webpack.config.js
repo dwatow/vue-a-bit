@@ -44,19 +44,12 @@ module.exports = {
             'scss': [
               'vue-style-loader',
               'css-loader',
-              'sass-loader',
-              {
-                // resources loader enable global scss files
-                loader: 'sass-resources-loader',
-                options: {
-                  resources: path.resolve(__dirname, './src/assets/styles/global.scss'), // for example
-                },
-              },
+              'sass-loader'
             ],
             'sass': [
               'vue-style-loader',
               'css-loader',
-              'sass-loader?indentedSyntax'              
+              'sass-loader?indentedSyntax'
             ]
           }
           // other vue-loader options go here
