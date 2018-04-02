@@ -217,9 +217,12 @@
 </template>
 
 <script>
-import $ from 'jquery';
-import bootstrap from 'bootstrap';
-import 'bootstrap/dist/css/bootstrap.css'
+import 'jquery';
+import 'popper.js';
+import 'bootstrap';
+
+
+// import 'bootstrap/dist/css/bootstrap.css'
 
 import fontawesome from '@fortawesome/fontawesome'
 import faFacebook from '@fortawesome/fontawesome-free-brands/faFacebookF'
@@ -242,7 +245,19 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+
+// Required
+// @import "~bootstrap/scss/functions";
+// @import "~bootstrap/scss/variables";
+// @import "~bootstrap/scss/mixins";
+
+@include media-breakpoint-down(sm){
+  div {
+    outline: solid red;
+  }
+};
+
 body {
   background-image: url("./img/bg-body.jpg");
   color: white;

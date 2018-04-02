@@ -20,11 +20,13 @@ export default {
   },
   components: {
     myHeader,
-    myBody: myBody,
-    myFooter: myFooter
+    myBody,
+    myFooter
   }
 }
 </script>
 
 <style>
+/* @import"../src/assets/variable.scss"; */
+ /* @import "../node_modules/bootstrap/scss/bootstrap"; */
 </style>

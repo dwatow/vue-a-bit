@@ -18,53 +18,22 @@ module.exports = {
         ],
       },
       {
-        test: /\.(scss)$/,
-        use: [{
-          loader: 'vue-style-loader', // inject CSS to page
-        }, {
-          loader: 'css-loader', // translates CSS into CommonJS modules
-        }, {
-          loader: 'postcss-loader', // Run post css actions
-          options: {
-            plugins: function () { // post css plugins, can be exported to postcss.config.js
-              return [
-                require('precss'),
-                require('autoprefixer')
-              ];
-            }
-          }
-        }, {
-          loader: 'sass-loader' // compiles Sass to CSS
-        // }, {
-        //   loader: 'sass-resources-loader',
-        //   options: {
-        //     resources: [
-        //       path.resolve(__dirname, './node_modules/bootstrap/scss/bootstrap.scss'),
-        //       path.resolve(__dirname, './src/main.scss')
-        //     ]
-        //   }
-        }]
+        test: /\.scss$/,
+        use: [
+          'vue-style-loader',
+          'css-loader',
+          'scss-loader'
+        ],
       },
       {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
+          postcss: 'postcss',
           loaders: {
-            scss: [
-              'vue-style-loader',
-              'css-loader',
-              'postcss-loader',
-              'sass-loader',
-              {
-                loader: 'sass-resources-loader',
-                options: {
-                  resources: [
-                    './node_modules/bootstrap/scss/bootstrap.scss'
-                  ]
-                },
-              },
-            ],
-          }
+            scss: 'vue-style-loader!css-loader!sass-loader'
+          },
+          // other vue-loader options go here
         }
       },
       {
@@ -76,7 +45,8 @@ module.exports = {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         options: {
-          name: '[name].[ext]?[hash]'
+          name: '[hash].[ext]?',
+          publicPath: './dist',
         }
       }
     ]
