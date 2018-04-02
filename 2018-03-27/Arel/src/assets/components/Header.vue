@@ -17,6 +17,7 @@ export default {
 
 <style lang="scss">
 
+
 .theme-header {
 	background: #FFF;
 	display: flex;
