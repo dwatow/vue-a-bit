@@ -22,43 +22,17 @@ module.exports = {
         use: [
           'vue-style-loader',
           'css-loader',
-          'sass-loader'
-        ],
-      },
-      {
-        test: /\.sass$/,
-        use: [
-          'vue-style-loader',
-          'css-loader',
-          'sass-loader?indentedSyntax'
+          'scss-loader'
         ],
       },
       {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
+          postcss: 'postcss',
           loaders: {
-            // Since sass-loader (weirdly) has SCSS as its default parse mode, we map
-            // the "scss" and "sass" values for the lang attribute to the right configs here.
-            // other preprocessors should work out of the box, no loader config like this necessary.
-            'scss': [
-              'vue-style-loader',
-              'css-loader',
-              'sass-loader',
-              {
-                // resources loader enable global scss files
-                loader: 'sass-resources-loader',
-                options: {
-                  resources: path.resolve(__dirname, './src/assets/styles/global.scss'), // for example
-                },
-              },
-            ],
-            'sass': [
-              'vue-style-loader',
-              'css-loader',
-              'sass-loader?indentedSyntax'              
-            ]
-          }
+            scss: 'vue-style-loader!css-loader!sass-loader'
+          },
           // other vue-loader options go here
         }
       },
@@ -71,7 +45,8 @@ module.exports = {
         test: /\.(png|jpg|gif|svg)$/,
         loader: 'file-loader',
         options: {
-          name: '[name].[ext]?[hash]'
+          name: '[hash].[ext]?',
+          publicPath: './dist',
         }
       }
     ]
