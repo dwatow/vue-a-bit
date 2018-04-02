@@ -3,6 +3,10 @@
 
 研究 Plugin !!
 
+- Jim
+  - [DefinePlugin](https://webpack.js.org/plugins/define-plugin/)
+  - [HtmlWebpackPlugin](https://webpack.js.org/plugins/html-webpack-plugin/)
+
 練習
 
 切 3 or 4 版，用 webpack-sample 的模版。
