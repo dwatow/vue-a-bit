@@ -44,9 +44,7 @@ import axios from 'axios'
 import * as moment from 'moment';
 
 export default {
-  props: {
-    'nav': []
-  },
+  props: ['nav'],
   data() {
       return {
         'activitiesData': [],
@@ -164,6 +162,7 @@ export default {
   } */
 //當頁
   .content {
+    height: auto;
     .content_titles {
       .content_titles_text {
         height: 83px;
