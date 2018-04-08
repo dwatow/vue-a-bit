@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="banner">
+  <div class="banner" @click="popUp">
     <div class="banner-title">
       <div class="banner-color-block"></div>
       <div class="banner-text-block-en">
@@ -25,7 +25,11 @@ export default {
   // Life cycle hook
   beforeCreate() {},
   mounted() {},
-  methods: {},
+  methods: {
+    popUp () {
+      this.$emit("parentCatch", "hello I am CHILD")
+    }
+  },
   watch: {}
 }
 </script>
@@ -78,7 +82,7 @@ export default {
         position: absolute;
         bottom: 25%;
         left: 50%;
-        transform: translate(-50%, 50%);        
+        transform: translate(-50%, 50%);
       }
     }
   }

@@ -4,47 +4,56 @@
           <p class="title">每週資訊分享活動</p>
           <button class="addActiveBtn">發佈/管理活動</button>
           <div class="selectorTable">
-              <div class="selectorItem left checked">全部活動</div>
-              <div class="selectorItem">即將開始活動</div>
-              <div class="selectorItem right">已經結束活動</div>
+              <div :class="['selectorItem',  'left' , {checked: type=='all'}]" @click="type = 'all'">全部活動</div>
+              <div :class="['selectorItem', {checked: type=='ongoing'}]" @click="type = 'ongoing'">即將開始活動</div>
+              <div :class="['selectorItem',  'right', {checked: type=='end'}]" @click="type = 'end'">已經結束活動</div>
           </div>
       </div>
       <ul class="speechList">
-        <li v-for="item in allSpeach">
-          <img :src="item.class_img" class="classImg">
-          <div class="speechInfo">
-            <p class="speechTitle">{{ item.title }}</p>
-            <p class="speechDate">{{ item.speech_date }}</p>
-            <div class="speaker">
-              <img :src="item.speaker_img" class="speakerPic">
-              <span class="speakerName">{{ item.speaker }}</span>
-              <p class="speechContent">{{ item.message }}</p>
-            </div>
-          </div>
-          <div class="speechStatus">已經結束</div>
-        </li>
+        <app-speech v-for="item in filterSpeech" :key=" item.title" :speech="item"></app-speech>
       </ul>
   </div>
 </template>
 <script>
 import axios from "axios";
+import Speech from './Speech.vue';
 
 export default {
   data() {
     return {
+      type:'all',
       allSpeach: ""
     };
+  },
+  computed:{
+    filterSpeech () {
+      let today = new Date ();
+      if (this.type === 'end') {
+        return this.allSpeach.filter(speech => {
+          return new Date(speech.speech_date) < today
+        })
+      } else if (this.type ==='ongoing') {
+        return this.allSpeach.filter(speech => {
+          return new Date(speech.speech_date) > today
+        })
+      } else {
+        return this.allSpeach
+      }
+    }
+  },
+  components:{
+    appSpeech:Speech
   },
   created() {
     axios
       .get("https://devche.com/api/speech/data")
       .then(res => {
-        console.log(res.data.result);
         this.allSpeach = res.data.result.sort(function (a, b) {
           return parseInt(b.speech_date.split('-').join('')) - parseInt(a.speech_date.split('-').join(''))
         });
       })
       .catch(error => console.log(error));
+      console.log(this.allSpeach);
   }
 };
 </script>
@@ -122,6 +131,7 @@ button {
   letter-spacing: normal;
   color: #0f375b;
   text-align: center;
+  cursor: pointer;
 }
 
 .selectorItem.left {
@@ -143,93 +153,5 @@ ul {
   overflow-y: scroll;
   list-style: none;
   padding: 0;
-}
-
-li {
-  margin-top: 12px;
-  height: 140px;
-  width: 100%;
-  display: flex;
-}
-
-.classImg {
-  width: 140px;
-  height: 140px;
-  display: inline-block;
-  /* background: rosybrown; */
-}
-
-.speechInfo {
-  margin-left: 17px;
-  padding-top: 10px;
-  padding-left: 17px;
-  width: calc(100% - 174px);
-  background-color: #ebf3f6;
-}
-
-.speechTitle {
-  font-family: PingFangTC;
-  font-size: 20px;
-  font-weight: 500;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
-  color: #7a062e;
-}
-
-.speechDate{
-  font-family: PingFangTC;
-  font-size: 18px;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
-  color: #117f7e;
-}
-
-.speaker{
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-
-.speakerPic{
-  border-radius: 50%;
-}
-
-.speakerName{
-  margin-left: 9px;
-  font-family: PingFangTC;
-  font-size: 20px;
-  font-weight: 500;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: normal;
-  letter-spacing: normal;
-  text-align: left;
-  color: #0f375b;
-}
-
-.speechContent {
-  position: absolute;
-  right: 60px;
-  width: 50%;
-  height: 50px;
-  overflow-y: scroll;
-}
-
-.speechStatus{
-  width: 30px;
-  padding: 0 5px;
-  background-color: #79052e;
-  color: #ffffff;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 </style>
