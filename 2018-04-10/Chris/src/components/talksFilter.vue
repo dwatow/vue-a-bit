@@ -1,9 +1,9 @@
 <template lang="html">
-    <div class="filter" :class="isActive" @click="$emit('filter', filter(status))">{{content}}</div>
+    <div class="filter" :class="isActive" @click="$emit('filter', filter())">{{content}}</div>
 </template>
 <script>
 export default {
-  props: ["talks", "status", "content", "currStatus"],
+  props: ["status", "content", "currStatus"],
   event: 'filter',
   computed: {
     isActive () {
@@ -13,18 +13,24 @@ export default {
     }
   },
   methods: {
-    filter (status) {
-      console.log(status, this.status, this.currStatus);
-      return {
-        talks: this.talks.filter(item => item.checkSchedule().includes(status)),
-        status: status
-      }
+    filter () {
+      return this.status
     },
   }
 }
 </script>
 
 <style lang="scss">
+  a {
+    &:first-child {
+      border-radius: 10px 0 0 10px;
+    }
+
+    &:last-child {
+      border-radius: 0 10px 10px 0;
+    }
+  }
+
   .filter {
     display: inline-block;
     width: 33.33%;
@@ -34,13 +40,6 @@ export default {
     border: solid 1px #0f375b;
     box-sizing: border-box;
 
-    &:first-child {
-      border-radius: 10px 0 0 10px;
-    }
-
-    &:last-child {
-      border-radius: 0 10px 10px 0;
-    }
 
     &.active {
       color: #ffffff;

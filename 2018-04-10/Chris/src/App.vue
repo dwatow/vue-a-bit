@@ -7,11 +7,11 @@
       <div class="createTalk">發佈/管理活動</div>
       <!-- <div class="clearfix"></div> -->
       <div class="talks-filter">
-        <talksFilter :talks="talks" :currStatus="result.status" status="all" @filter="filterResult" content="全部活動"></talksFilter>
-        <talksFilter :talks="talks" :currStatus="result.status" status="showing" @filter="filterResult" content="即將開始活動"></talksFilter>
-        <talksFilter :talks="talks" :currStatus="result.status" status="finished" @filter="filterResult" content="已結束活動"></talksFilter>
+        <router-link to="/filter/all"><talksFilter :currStatus="$route.params.status" status="all" @filter="filterResult" content="全部活動"></talksFilter></router-link>
+        <router-link to="/filter/showing"><talksFilter :currStatus="$route.params.status" status="showing" @filter="filterResult" content="即將開始活動"></talksFilter></router-link>
+        <router-link to="/filter/finished"><talksFilter :currStatus="$route.params.status" status="finished" @filter="filterResult" content="已結束活動"></talksFilter></router-link>
       </div>
-      <template v-for="talk in result.talks">
+      <template v-for="talk in filteredTalks">
         <want2knowTalks :talk="talk"></want2knowTalks>
       </template>
     </div>
@@ -19,21 +19,19 @@
 </template>
 
 <script>
-import axios from 'axios';
+import axios from 'axios'
 import want2knowTalks from './components/want2knowTalks.vue'
 import talksFilter from './components/talksFilter.vue'
 import banner from './components/banner.vue'
+import router from './router'
 
 export default {
   name: 'app',
+  router,
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
       talks: [],
-      result: {
-        talks: [],
-        status: "all"
-      }
+      status: "all"
     }
   },
   components: {
@@ -42,8 +40,15 @@ export default {
     want2knowTalks,
   },
   methods: {
-    filterResult (result) {
-      this.result = result;
+    filterResult (status) {
+      this.status = status;
+    }
+  },
+  computed: {
+    filteredTalks () {
+      console.log('filter!!');
+      const status = this.status;
+      return this.talks.filter(item => item.checkSchedule().includes(status))
     }
   },
   created () {
@@ -69,7 +74,6 @@ export default {
         }
         return Object.assign({}, item, obj)
       });
-      this.result.talks = this.talks;
     })
   }
 }
@@ -83,10 +87,11 @@ body {
   font-size: 0;
   border-radius: 10px;
   background-color: #ffffff;
-  border: solid 1px #0f375b;
+  border: solid 2px #0f375b;
   width: 100%;
-
 }
+
+
 .talks {
   position: relative;
   text-align: left;
