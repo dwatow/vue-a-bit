@@ -98,7 +98,7 @@ export default {
             var value = vm.timeState(item.speech_date)
             vm.$set(item, 'state', value)
           })
-          // console.log(vm.activitiesData)
+          console.log(vm.activitiesData)
         })
         .catch(function (error) {
           //沒有資料，給預設資料
