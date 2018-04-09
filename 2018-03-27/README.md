@@ -4,8 +4,8 @@
 研究 Plugin !!
 
 - Jim
-  - [DefinePlugin](https://webpack.js.org/plugins/define-plugin/)
   - [HtmlWebpackPlugin](https://webpack.js.org/plugins/html-webpack-plugin/)
+
 
 練習
 

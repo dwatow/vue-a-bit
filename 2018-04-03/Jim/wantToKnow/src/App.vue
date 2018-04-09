@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <banner-component></banner-component>
+    <banner-component @parentCatch="parentDealWith"></banner-component>
     <content-component :nav="list"></content-component>
     <footer-component></footer-component>
   </div>
@@ -13,11 +13,6 @@ import FOOTER from './components/footer.vue';
 
 export default {
   name: 'app',
-  components: {
-    'banner-component': BANNER,
-    'content-component': CONTENT,
-    'footer-component': FOOTER
-  },
   data () {
     return {
       'list': [
@@ -36,7 +31,21 @@ export default {
       ]
     }
   },
-
+  computed: {},
+  components: {
+    'banner-component': BANNER,
+    'content-component': CONTENT,
+    'footer-component': FOOTER
+  },
+  // Life cycle hook
+  beforeCreate() {},
+  mounted() {},
+  methods: {
+    parentDealWith(msg) {
+      alert(msg)
+    }
+  },
+  watch: {}
 }
 </script>
 
@@ -47,6 +56,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  width: 100%;
 }
 html {
   margin: 0px;

@@ -6,10 +6,10 @@
       <h1>每週分享活動</h1>
       <div class="createTalk">發佈/管理活動</div>
       <!-- <div class="clearfix"></div> -->
-      <div class="talk-filter">
-        <talksFilter :class="[(result.status == 'all')? 'active' : '']" :talks="talks" status="all" @filter="filterResult" content="全部活動"></talksFilter>
-        <talksFilter :class="[(result.status == 'showing')? 'active' : '']" :talks="talks" status="showing" @filter="filterResult" content="即將開始活動"></talksFilter>
-        <talksFilter :class="[(result.status == 'finished')? 'active' : '']" :talks="talks" status="finished" @filter="filterResult" content="已結束活動"></talksFilter>
+      <div class="talks-filter">
+        <talksFilter :talks="talks" :currStatus="result.status" status="all" @filter="filterResult" content="全部活動"></talksFilter>
+        <talksFilter :talks="talks" :currStatus="result.status" status="showing" @filter="filterResult" content="即將開始活動"></talksFilter>
+        <talksFilter :talks="talks" :currStatus="result.status" status="finished" @filter="filterResult" content="已結束活動"></talksFilter>
       </div>
       <template v-for="talk in result.talks">
         <want2knowTalks :talk="talk"></want2knowTalks>
@@ -79,35 +79,13 @@ export default {
 body {
   margin: 0;
 }
-.talk-filter {
+.talks-filter {
   font-size: 0;
   border-radius: 10px;
   background-color: #ffffff;
   border: solid 1px #0f375b;
   width: 100%;
 
-  div {
-    display: inline-block;
-    width: 33.33%;
-    font-size: 24px;
-    text-align: center;
-    color: #0f375b;
-    border: solid 1px #0f375b;
-    box-sizing: border-box;
-
-    &:first-child {
-      border-radius: 10px 0 0 10px;
-    }
-
-    &:last-child {
-      border-radius: 0 10px 10px 0;
-    }
-
-    &.active {
-      color: #ffffff;
-      background-color: #0f375b;
-    }
-  }
 }
 .talks {
   position: relative;

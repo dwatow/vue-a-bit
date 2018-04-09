@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="content">
-    <div class="content_titles container">
+    <div class="content_titles">
       <div class="content_titles_text">
         <h1>分週資訊活動分享</h1><button type="button" name="button">發布/活動管理</button>
       </div>
@@ -29,7 +29,7 @@
                 </div>
               </div>
             </div>
-            <div class="info_state">
+            <div class="info_state" :class="info_state2[item.state]">
               {{ item.state }}
             </div>
           </div>
@@ -44,13 +44,16 @@ import axios from 'axios'
 import * as moment from 'moment';
 
 export default {
-  props: {
-    'nav': []
-  },
+  props: ['nav'],
   data() {
       return {
         'activitiesData': [],
-        'navSelected': '全部活動'
+        'navSelected': '全部活動',
+        'info_state2': {
+          '本週活動': 'on',
+          '即將開始': 'will',
+          '已經結束': 'past'
+        }
       }
   },
   computed: {
@@ -140,16 +143,24 @@ export default {
     background-color: #0f375b;
     color: #ffffff;
   }
+  .past {
+    background-color: #7a062e;
+  }
+  .will {
+    background-color: #1e8ba6;
+  }
+  .on {
+    background-color: #5d9c6c;
+  }
 
 //統一樣式class
-  .container {
-    width: 80%;
-  }
   /* * {
     border: solid 1px red;
   } */
 //當頁
   .content {
+    width: 80%;
+    margin: 0 auto;
     .content_titles {
       .content_titles_text {
         height: 83px;
@@ -217,7 +228,7 @@ export default {
               width: calc(100% - 150px);
               text-align: left;
               background: rgba(#1e8ba6, 0.1);
-              padding: 15px;
+              padding: 15px 45px 15px 15px;
               h1 {
                 font-size: 20px;
                 color: #7a062e;
@@ -251,13 +262,22 @@ export default {
                   display: inline-block;
                   float:left;
                   width: 75%;
-                  height: 66px;
+                  height: 51px;
                   overflow-y: auto;
                   font-size: 16px;
                   color: #0f375b;
                 }
               }
             }
+          }
+          .test {
+            background-color: black
+          }
+          .tes2 {
+            background-color: yellow
+          }
+          .test {
+            background-color: green
           }
           .info_state {
             position: absolute;
@@ -270,7 +290,6 @@ export default {
             line-height: 40px;
             letter-spacing: 4px;
             font-size: 18px;
-            background-color: red;
           }
         }
       }
