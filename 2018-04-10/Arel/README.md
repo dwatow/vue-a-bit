@@ -2,17 +2,8 @@
 
 > A Vue.js project
 
-## Build Setup
+## 記錄
 
-``` bash
-# install dependencies
-npm install
+- 使用了 Vue Router 搭配 webpack-simple template 完成想知道嗎清單，外加點選清單的日期可以看到所有當日會分享的活動
+- 使用的技術有基本的 Vue Router (mode: history), 還有 Vue Router 的 parameters.
 
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-```
-
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
