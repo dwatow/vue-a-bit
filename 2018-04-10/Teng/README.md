@@ -1,18 +1,7 @@
 # router_version
 
-> A Vue.js project
+> 練習用router做出想知道嗎頁面
 
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-```
-
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+## 說明
+- router當作component, 把由api接到的array丟進去
+- 上方的網址自帶參數，參數為篩選條件，故雖然網址一樣呈現的結果會不一樣。
