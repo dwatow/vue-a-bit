@@ -11,9 +11,9 @@
             </div>
         </div>
         <div v-if="new Date(speech.speech_date) < new Date()" class="speechStatus">已經結束</div>
-        <div v-else-if="new Date(speech.speech_date) > new Date()" class="speechStatus">即將開始</div>
-        <div v-else class="speechStatus">本週活動</div>
-        </li>
+        <div v-else-if="new Date(speech.speech_date) > new Date()" class="speechStatus ongoing">即將開始</div>
+        <div v-else class="speechStatus thisweek">本週活動</div>
+    </li>
 </template>
 <script>
 export default {
@@ -108,6 +108,14 @@ li {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.speechStatus.thisweek{
+  background: rgb(93, 156, 108);
+}
+
+.speechStatus.ongoing{
+  background: rgb(93, 156, 108);
 }
 </style>
 
