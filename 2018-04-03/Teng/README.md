@@ -1,18 +1,14 @@
 # good_idea_font_stage
 
-> A Vue.js project
+> 練習接api
 
-## Build Setup
+## 說明
+- 利用axios將資料接進來
+1. 先排序
+2. 利用moment.js宣告現在時間 ```"2018-03-22"```
+3. 每個物件加上status, eg:comming, today, past
 
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-```
-
-For detailed explanation on how things work, consult the [docs for vue-loader](http://vuejs.github.io/vue-loader).
+- 把顯示speech的區塊變成components
+- 篩選區塊用input radio做，radio決定filter_condition，filter_condition再傳到components裡，component接到篩選條件篩選出speech
+  - 把input渲染出的英文變成中文
+- 每個speech都有自己的status, 故會呈現本週活動, 即將開始, 已經結束
