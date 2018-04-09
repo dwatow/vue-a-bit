@@ -1,11 +1,13 @@
 <template lang="html">
   <div class="content">
-    <div class="content_titles">
+    <div class="content_titles container">
       <div class="content_titles_text">
         <h1>分週資訊活動分享</h1><button type="button" name="button">發布/活動管理</button>
       </div>
       <ul>
-        <li v-for="(item, index) in nav" :class="{'button-clicked': item.clicked}" @click="navSwitch(item.content, index)" >{{ item.content }}</li>
+        <li v-for="(item, index) in nav" :class="{'button-clicked': item.clicked}" @click="navSwitch(item.content, index)" >
+          {{ item.content }}
+        </li>
       </ul>
     </div>
     <div class="content_list container">
@@ -22,7 +24,7 @@
                 <div class="info_author_pic_and_name">
                   <!-- <img v-if="item.speaker_img" :src="item.speaker_img" alt=""> -->
                   <img src="../assets/images/kitty@2x.png" alt="">
-                  <span>{{ item.speaker }}</span>
+                  <span><router-link :to="{ path: '/content/resume/' + item.speaker}">{{ item.speaker }}</router-link></span>
                 </div>
                 <div class="info_des">
                   {{ item.message }}
@@ -44,9 +46,22 @@ import axios from 'axios'
 import * as moment from 'moment';
 
 export default {
-  props: ['nav'],
   data() {
       return {
+        'nav': [
+          {
+            'content': '全部活動',
+            'clicked': true
+          },
+          {
+            'content': '即將開始活動',
+            'clicked': false
+          },
+          {
+            'content': '已經結束活動',
+            'clicked': false
+          }
+        ],
         'activitiesData': [],
         'navSelected': '全部活動',
         'info_state2': {
@@ -60,7 +75,7 @@ export default {
     activitiesFilted () {
       if (this.navSelected === '即將開始活動') {
         return this.activitiesData.filter((item)=>{
-          if (item.state === '即將開始') {
+          if (item.state === '本週活動') {
             return true
           }
         })
@@ -80,6 +95,7 @@ export default {
   beforeCreate() {},
   mounted() {
     this.getActivities()
+
   },
   methods: {
     getActivities () {
@@ -111,9 +127,9 @@ export default {
     timeState (currentTime) {
       var state = ''
       var now = currentTime
-      var weekSatrt = moment().day(1)._d.getTime();
-      var weekEnd = moment().day(7)._d.getTime();
-      if (now === weekSatrt && now > weekSatrt && now < weekEnd) {
+      var weekStart = moment().day(1).format('YYYY-MM-DD')
+      var weekEnd = moment().day(7).format('YYYY-MM-DD')
+      if (now === weekStart || now > weekStart && now < weekEnd) {
         state = '本週活動'
       } else if (now > weekEnd) {
         state = '即將開始'
@@ -154,13 +170,17 @@ export default {
   }
 
 //統一樣式class
+  .container {
+    width: 80%;
+    margin: 0 auto;
+  }
   /* * {
     border: solid 1px red;
   } */
 //當頁
   .content {
-    width: 80%;
-    margin: 0 auto;
+    height: auto;
+    min-height: 100vh;
     .content_titles {
       .content_titles_text {
         height: 83px;

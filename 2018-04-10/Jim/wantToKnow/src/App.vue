@@ -1,41 +1,34 @@
 <template>
   <div id="app">
     <banner-component @parentCatch="parentDealWith"></banner-component>
-    <content-component :nav="list"></content-component>
+      <router-view></router-view>
+    <!-- <resume-component></resume-component>
+    <content-component :nav="list"></content-component>   -->
     <footer-component></footer-component>
+    <gotop-component></gotop-component>
   </div>
 </template>
 
 <script>
 import BANNER from './components/banner.vue';
 import CONTENT from './components/content.vue';
+import RESUME from './components/Resume.vue';
 import FOOTER from './components/footer.vue';
+import GOTOP from './components/goTop.vue';
 
 export default {
   name: 'app',
   data () {
     return {
-      'list': [
-        {
-          'content': '全部活動',
-          'clicked': true
-        },
-        {
-          'content': '即將開始活動',
-          'clicked': false
-        },
-        {
-          'content': '已經結束活動',
-          'clicked': false
-        }
-      ]
     }
   },
   computed: {},
   components: {
     'banner-component': BANNER,
     'content-component': CONTENT,
-    'footer-component': FOOTER
+    'footer-component': FOOTER,
+    'resume-component': RESUME,
+    'gotop-component': GOTOP
   },
   // Life cycle hook
   beforeCreate() {},
@@ -56,9 +49,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  width: 100%;
 }
-html {
+html, body {
   margin: 0px;
 }
 </style>
