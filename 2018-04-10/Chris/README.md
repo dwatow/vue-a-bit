@@ -1,6 +1,6 @@
 # vue 的 component + API 練習
 
-[練習結果](https://dwatow.github.io/vue-a-bit/2018-04-10/Chris/)
+[練習結果](https://dwatow.github.io/vue-a-bit/2018-04-10/Chris/#/filter/showing)
 
 ## API
 
