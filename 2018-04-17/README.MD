@@ -12,8 +12,9 @@
 
 **練習**
 
-切第 1 版
-使用 webpack 版型
+1. 用vue-cli切七個版裡的第一個版
+2. 研究webpack模板與webpack-simple模板的差異性
+3. 盡可能研究上述plugin
 
 **活動**
 
