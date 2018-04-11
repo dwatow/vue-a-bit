@@ -1,75 +1,76 @@
 # vue 的 component + API 練習
 
-[練習結果](https://dwatow.github.io/vue-a-bit/2018-04-10/Chris/#/filter/showing)
+[練習結果](https://dwatow.github.io/vue-a-bit/2018-04-03/Chris/)
 
 ## API
 
 放置在 lifecycle 的 `created` ，當時的 data 已初始化完畢，允許賦值。
 
-## Filter
+## props
 
-與上週不同。
-上週會將整個 talks 吃進來，而這次改成只是回傳自己的狀態回去，並且將當下狀態吃進來比對，並且變色。
+丟進來的 props 如同 data 般使用
+可以用 `this.props` 取用。
 
-## 修改 Dom 的 class
+> 不建議修改 props 的值
+> 若真的要修改，建議使用
+> ```
+> data() {
+>     return {
+>         data1: this.props
+>     }
+> }
+> ```
 
-利用 computed 來當作 data 的 getter ，用「改變取 data 的形式」的原則，像是「增加了新的 data」的做法。
+## $emit
 
-## vue-router
+這是一個可以委派事件給 component ，並且在事件的 callback 參數。
 
-### 安裝
+**在 外層**
 
-一個 middleware 附加在 vue instance 裡。[^middleware]
-
-**src/router/index.js**
-
-做成元件使用
-
-```
-import Vue from 'vue'
-import Router from 'vue-router'
-import talksFilter from '../components/talksFilter.vue'
-
-Vue.use(Router)
-export default new Router({
-  routes: [
-    { path: '/filter/:status', component: talksFilter }
-  ]
-})
+```javascript=
+//如同 jQuery
+$('myTag').on('myEvent', eventCallback)
 ```
 
-**src/App.vue**
 
-在會使用到的 component 裡使用
-
+```html
+<myTag @myEvent="eventCallback" />
 ```
-import router from './router'
 
-export default {
-  name: 'app',
-  router,
-  //...
+```javascript
+mehtods: {
+    callback (e) {
+        //do something
+    }
 }
 ```
 
-### 使用
+**在 component**
 
-在此使用[Dynamic Route Matching](https://router.vuejs.org/en/essentials/dynamic-matching.html)的做法。將網址的參數當作 component 的參數使用。
+myMethod 的回傳值，就是 eventCallback 的參數。
 
-在 router 裡設定 routes 的 path
-
-```
-routes: [
-  { path: '/filter/:status', component: talksFilter }
-]
+```htmlmixed=
+<tag @click="$emit('myEvent', myMethod())" />
 ```
 
+```javascript=
+event: myEvent,
+methods: {
+    myMethod () {
+      return myEvent;
+    }
+}
 ```
-<router-link to="/filter/all"><talksFilter :currStatus="$route.params.status" status="all"></talksFilter></router-link>
-<router-link to="/filter/showing"><talksFilter :currStatus="$route.params.status" status="showing"></talksFilter></router-link>
-<router-link to="/filter/finished"><talksFilter :currStatus="$route.params.status" status="finished"></talksFilter></router-link>
+
+## 修改 Dom 的 class
+
+換 class 對於 jQuery 慣用的開發者來說，是很直覺的事。
+但是對於 vue 來說就不是這麼簡單的事了。
+
+這次除了參考「vue 10日」之外，再回去看 官網文件，發現之前沒注意過的寫法。
+
+```htmlmixed=
+<tag :class="condition ? class1 : class2" />
 ```
 
-
-
-[^middleware]: [Vue.js Routing With vue-router](https://medium.com/codingthesmartway-com-blog/vue-js-routing-with-vue-router-4c428fabb078)
+這樣一來就可以在 condition 的地方，放上邏輯囉~

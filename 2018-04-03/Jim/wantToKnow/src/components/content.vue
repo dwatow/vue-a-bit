@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="content">
-    <div class="content_titles container">
+    <div class="content_titles">
       <div class="content_titles_text">
         <h1>分週資訊活動分享</h1><button type="button" name="button">發布/活動管理</button>
       </div>
@@ -101,7 +101,7 @@ export default {
             var value = vm.timeState(item.speech_date)
             vm.$set(item, 'state', value)
           })
-          // console.log(vm.activitiesData)
+          console.log(vm.activitiesData)
         })
         .catch(function (error) {
           //沒有資料，給預設資料
@@ -154,15 +154,13 @@ export default {
   }
 
 //統一樣式class
-  .container {
-    width: 80%;
-  }
   /* * {
     border: solid 1px red;
   } */
 //當頁
   .content {
-    height: auto;
+    width: 80%;
+    margin: 0 auto;
     .content_titles {
       .content_titles_text {
         height: 83px;
