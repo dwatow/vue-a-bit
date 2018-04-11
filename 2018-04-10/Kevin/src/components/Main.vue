@@ -9,9 +9,10 @@
             <router-link to="/end" tag="div" :class="['selectorItem',  'right']" active-class="checked" >已經結束活動</router-link>
           </div>
       </div>
-      <ul class="speechList">
+      <router-view :speechs="filterSpeech"></router-view>
+      <!-- <ul class="speechList">
         <app-speech v-for="item in filterSpeech" :key=" item.title" :speech="item"></app-speech>
-      </ul>
+      </ul> -->
   </div>
 </template>
 <script>
@@ -53,7 +54,9 @@ export default {
     }
   },
   watch:{
-    '$route'(to, from) {
+    '$route':function(to, from){
+      console.log('to', to);
+      console.log('from', from);
       if (to.path ==='/') {
         this.type = 'all';
       } else if (to.path ==='/ongoing') {
@@ -61,7 +64,19 @@ export default {
       } else {
         this.type = 'end';
       }
-    }
+    },
+
+    // '$route'(to, from) {
+    //   console.log('to', to);
+    //   console.log('from', from);
+    //   if (to.path ==='/') {
+    //     this.type = 'all';
+    //   } else if (to.path ==='/ongoing') {
+    //     this.type = 'ongoing';
+    //   } else {
+    //     this.type = 'end';
+    //   }
+    // }
   },
   components: {
     appSpeech: Speech
@@ -79,6 +94,8 @@ export default {
       })
       .catch(error => console.log(error));
     console.log(this.allSpeach);
+    console.log(this.$route);
+    console.log(this.$router)
   }
 };
 </script>
