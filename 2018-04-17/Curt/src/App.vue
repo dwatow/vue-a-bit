@@ -1,94 +1,20 @@
 <template>
   <div id="app">
-    <div class="header">
-        <div class="container">
-          <div class="logo">
-            <img src="./images/zerotype.png" alt=""/>
-          </div>
-          <div class="nav">
-            <ul>
-              <li><a href="#">HOME</a></li>
-              <li><a href="#">Feature</a></li>
-              <li><a href="#">News</a></li>
-              <li><a href="#">About</a></li>
-              <li><a href="#">Contact</a></li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
-
-      <div class="content">
-        <div class="content1">
-          <h1>IDEAS?</h1>
-
-          <p class="p1">This is just a place holder.</p>
-          <p class="p2">You can remove any link to our website from this
-          website template,you're free to use this website
-          template wuthout linking back to us.</p>
-          <div class="btn">
-            <img src="images/try_btn.png" alt="" height="39" width="151"/>
-            <span class="btn_text">Don't worry it's for free</span>
-          </div>
 
 
+    <Header></Header>
+    <router-view></router-view>
 
-
-        </div>
-        <div class="content2">
-          picture
-        </div>
-        <div class="placeholder">
-          This is just a place holder.
-        </div>
-        <div class="content3">
-          <p>
-
-You can remove any link to our website from this website template, you're free to use this website template without linking back to us.
-          </p>
-          <p>
-            This is just a place holder, so you can see what the site would look like.
-          </p>
-          <p>
-            You can remove any link to our website from this website template, you're free to use this website template without linking back to us. This is just a place holder, so you can see what the site would look like.
-          </p>
-        </div>
-        <div class="content4">
-          <p>
-            You can remove any link to our website from this website template, you're free to use this website template without linking back to us.
-          </p>
-          <p>
-            This is just a place holder, so you can see what the site would look like.
-          </p>
-          <p>
-            You can remove any link to our website from this website template, you're free to use this website template without linking back to us. This is just a place holder, so you can see what the site would look like.
-          </p>
-        </div>
-      </div>
-
-      <div class="footer">
-
-        <div class="container">
-          <div class="copy_right">
-            ©2023 Zerotype. All Rights Reserved.
-          </div>
-          <div class="social_icon">
-            <ul>
-              <li><a href="#"><img src="./images/facebook_icon.png" alt="" /></a></li>
-              <li><a href="#"><img src="./images/google_icon.png" alt="" /></a></li>
-              <li><a href="#"><img src="./images/twitter_icon.png" alt="" /></a></li>
-              <li><a href="#"><img src="./images/pinterest_icon.png" alt="" /></a></li>
-            </ul>
-          </div>
-        </div>
-
-      </div>
   </div>
 </template>
 
 <script>
+import Header from "@/components/Header"
 export default {
-  name: 'App'
+  name: 'App',
+  components:{
+    Header
+  }
 }
 </script>
 
