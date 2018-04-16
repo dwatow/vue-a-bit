@@ -10,7 +10,7 @@
       <img class="starLeft shake-constant shake-opacity" src="./assets/Starleft.png" height="56" width="58" alt="">
       <img class="starRight shake-constant shake-opacity" src="./assets/Starright.png" height="58" width="58" alt="">
     </div>
-    <content>
+    <div class="content">
       <h2>每週分享會資訊</h2>
       <button type="button" class="navButton">
         <i class="fa fa-bars" aria-hidden="true"></i>
@@ -44,7 +44,7 @@
       <div class="moveToTop" @click="moveToTop()">
         <i class="fa fa-chevron-circle-up" aria-hidden="true"></i>
       </div>
-    </content>
+    </div>
     <footer>
       <p>Copyright © 2017 <a href="http://goodideas-studio.com/">好想工作室</a><br>All Rights Reserved</p>
     </footer>
@@ -239,7 +239,7 @@ export default {
     height: auto
     z-index: 6
 
-content
+.content
   width: 77%
   margin: auto
   position: relative
