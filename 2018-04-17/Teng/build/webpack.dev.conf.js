@@ -16,16 +16,16 @@ const PORT = process.env.PORT && Number(process.env.PORT)
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({ sourceMap: config.dev.cssSourceMap, usePostCSS: true })
-  },
+  }, //sourceMap: true
   // cheap-module-eval-source-map is faster for development
-  devtool: config.dev.devtool,
+  devtool: config.dev.devtool, //'cheap-module-eval-source-map'
 
   // these devServer options should be customized in /config/index.js
   devServer: {
     clientLogLevel: 'warning',
     historyApiFallback: {
       rewrites: [
-        { from: /.*/, to: path.posix.join(config.dev.assetsPublicPath, 'index.html') },
+        { from: /.*/, to: path.posix.join(config.dev.assetsPublicPath, 'index.html') }, //path.posix.join('/', 'index.html')
       ],
     },
     hot: true,
