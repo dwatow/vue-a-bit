@@ -5,6 +5,7 @@ import Footer from "@/components/Footer"
 Vue.use(Router)
 
 var router =  new Router({
+  mode:'history',
   routes: [
     {
       path: '/',
@@ -16,7 +17,7 @@ var router =  new Router({
       path: '/Feature',
       name: 'Feature',
       component: Footer,
-      meta: { requiresAuth: true }
+      meta: { requiresAuth: true}
     },
     {
       path: '/News',
@@ -35,14 +36,16 @@ var router =  new Router({
       name: 'Contact',
       component: Footer,
       meta: { requiresAuth: true }
+
     }
   ]
 })
 
 router.beforeEach((to, from, next) => {
   console.log(to);
+  console.log(from);
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    console.log(window.hasLogin);
+    // console.log(window.hasLogin);
     if (!window.hasLogin) {
       next({
         path: '/',
