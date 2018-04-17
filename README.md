@@ -50,3 +50,12 @@
 2. 做了什麼，用了什麼 vue 的技巧
 3. 研究了什麼 webpack 的內容 (plugin, config...)
 4. QA
+
+**yoyo**
+
+
+**Tang**
+
+**Chris**
+
+**Kevin**
