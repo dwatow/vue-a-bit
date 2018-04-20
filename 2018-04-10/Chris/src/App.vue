@@ -15,6 +15,10 @@
         <want2knowTalks :talk="talk"></want2knowTalks>
       </template>
     </div>
+    <div style="width: 90vw; height: 400px;">
+      <chart :labels="Object.keys(histogram)" :data="Object.keys(histogram).map(key =>
+        histogram[key])"></chart>
+    </div>
   </div>
 </template>
 
@@ -24,6 +28,7 @@ import want2knowTalks from './components/want2knowTalks.vue'
 import talksFilter from './components/talksFilter.vue'
 import banner from './components/banner.vue'
 import router from './router'
+import chart from './components/chart.vue'
 
 export default {
   name: 'app',
@@ -31,13 +36,15 @@ export default {
   data () {
     return {
       talks: [],
-      status: "all"
+      status: "all",
+      histogram: {}
     }
   },
   components: {
     banner,
     talksFilter,
     want2knowTalks,
+    chart
   },
   methods: {
     filterResult (status) {
@@ -74,6 +81,14 @@ export default {
         }
         return Object.assign({}, item, obj)
       });
+
+      this.histogram = this.talks.reduce((object, item) => {
+        if (object.hasOwnProperty(item.speaker))
+          object[item.speaker] += 1;
+        else
+          object[item.speaker] = 1;
+        return object
+      }, {})
     })
   }
 }

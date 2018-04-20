@@ -43,3 +43,21 @@
 練習過的主題
 - 使用 webpack-sample 顯示一個頁面 3/13
 - 寫一個 loader 的研究
+
+## 分享
+
+1. Demo 你做的版
+2. 做了什麼，用了什麼 vue 的技巧
+3. 研究了什麼 webpack 的內容 (plugin, config...)
+4. QA
+
+**yoyo**
+
+
+
+**Tang**
+
+**Chris**
+
+
+**Kevin**

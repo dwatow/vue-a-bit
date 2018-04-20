@@ -1,6 +1,7 @@
 <template lang="html">
     <div class="filter" :class="isActive" @click="$emit('filter', filter())">{{content}}</div>
 </template>
+
 <script>
 export default {
   props: ["status", "content", "currStatus"],
