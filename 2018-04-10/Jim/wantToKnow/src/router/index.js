@@ -6,6 +6,7 @@ import Resume from '@/components/Resume'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -13,13 +14,15 @@ export default new Router({
     },
     {
       path: '/content',
-      name: 'content',
       component: content
     },
     {
       path: '/content/resume/:id',
-      name: 'Resume',
       component: Resume
+    },
+    {
+      path: "*",
+      redirect: '/content'
     }
   ]
 })

@@ -3,6 +3,7 @@
     <div :class="$style.author_resume">
       <h1 ><span style="text-shadow:3px 3px 3px #cccccc;">{{ name }}</span>'s Works</h1>
     </div>
+    
   <template v-if="showStatus">
     <Timeline class="timeLine">
       <TimelineItem v-for="(item, index) in specificAuther">
@@ -11,6 +12,7 @@
       </TimelineItem>
     </Timeline>
   </template>
+
     <div class="auther_works_list" v-else>
       <ul>
         <li :key="index" v-for="(item, index) in specificAuther">
@@ -54,7 +56,7 @@ export default {
           '即將開始': 'will',
           '已經結束': 'past'
         },
-        showStatus: false
+        showStatus: true
       }
   },
   computed: {

@@ -22,8 +22,8 @@
               </div>
               <div class="activitiesBars_info_author">
                 <div class="info_author_pic_and_name">
-                  <!-- <img v-if="item.speaker_img" :src="item.speaker_img" alt=""> -->
-                  <img src="../assets/images/kitty@2x.png" alt="">
+                  <img :src="item.speaker_img" alt="">
+                  <!-- <img :src="../assets/images/kitty@2x.png" alt=""> -->
                   <span><router-link :to="{ path: '/content/resume/' + item.speaker}">{{ item.speaker }}</router-link></span>
                 </div>
                 <div class="info_des">
