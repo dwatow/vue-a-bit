@@ -1,14 +1,22 @@
 <template lang="html">
   <div class="">
-    {{products}}
+    <template  v-for="product in products">
+      <Product :product="product"></Product>
+    </template>
   </div>
+
 </template>
 
 <script>
+import Product from '@/components/Product'
 export default {
   name:"Cart",
+  components:{
+    Product
+  },
   data(){
     return {
+
     }
   },
   computed:{
