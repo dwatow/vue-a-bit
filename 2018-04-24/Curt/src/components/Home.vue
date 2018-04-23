@@ -11,6 +11,10 @@
                       <Icon type="search"></Icon>
                       <span>Cart</span>
                   </MenuItem>
+                  <MenuItem @click.native="testModal()" name="1-2">
+                      <Icon type="search"></Icon>
+                      <span>Cart</span>
+                  </MenuItem>
               </Menu>
           </Sider>
           <!-- <ProductList></ProductList> -->
@@ -72,6 +76,13 @@ export default {
     },
     collapsedSider () {
         this.$refs.side1.toggleCollapse();
+    },
+    testModal(){
+      var info = {
+        show:true,
+        message:'testmessage'
+      }
+      this.$store.commit('controlModal',info)
     }
   },
   mounted(){

@@ -1,5 +1,5 @@
 <template lang="html">
-  <div class="productBlock">
+  <div @click="openModal()" class="productBlock">
     <div class="imgBlock" :style="{ backgroundImage: 'url(' + '//a.ecimg.tw' + product.picS + ')' }">
 
     </div>
@@ -36,6 +36,13 @@ export default {
         this.loading = false
       },1000)
     },
+    openModal(){
+      let info = {
+        show:true,
+        message: this.product.describe
+      }
+      this.$store.commit('controlModal',info)
+    }
 
   }
 }

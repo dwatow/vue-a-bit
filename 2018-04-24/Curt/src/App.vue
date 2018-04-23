@@ -5,8 +5,10 @@
     <input @click="addCount()" type="button" name="" value="">
     <input @click="increment()" type="button" name="" value="add increment"> -->
     <router-view/>
+    <iViewModal></iViewModal>
     <!-- {{count}}
     {{countPlusLocalState}} -->
+
   </div>
 </template>
 
@@ -14,8 +16,12 @@
 import {mapState} from 'vuex'
 import { mapActions } from 'vuex'
 import axios from 'axios'
+import iViewModal from '@/components/iViewModal'
 export default {
   name: 'App',
+  components:{
+    iViewModal
+  },
   data(){
     return {
       localCount:5
