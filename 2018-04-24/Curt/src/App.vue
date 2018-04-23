@@ -1,19 +1,19 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
+    <!-- <img src="./assets/logo.png">
     {{getCount()}}
     <input @click="addCount()" type="button" name="" value="">
-    <input @click="increment()" type="button" name="" value="add increment">
+    <input @click="increment()" type="button" name="" value="add increment"> -->
     <router-view/>
-    {{count}}
-    {{countPlusLocalState}}
+    <!-- {{count}}
+    {{countPlusLocalState}} -->
   </div>
 </template>
 
 <script>
 import {mapState} from 'vuex'
 import { mapActions } from 'vuex'
-
+import axios from 'axios'
 export default {
   name: 'App',
   data(){
@@ -45,18 +45,23 @@ export default {
     }
   },
   mounted(){
-    console.log(mapState);
+    // this.$store.commit('addProduct','apple')
+    // this.$store.commit('addProduct','apple2')
+    // this.$store.commit('addProduct','apple3')
+    // this.$axios('https://cors-anywhere.herokuapp.com/http://ecshweb.pchome.com.tw/search/v3.3/all/results?q=Apple&page=1&sort=rnk/dc')
+    //   .then(function (res) {
+    //   })
   }
 }
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  /* font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 60px; */
 }
 </style>
