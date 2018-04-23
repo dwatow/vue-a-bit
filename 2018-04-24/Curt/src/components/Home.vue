@@ -11,10 +11,6 @@
                       <Icon type="search"></Icon>
                       <span>Cart</span>
                   </MenuItem>
-                  <MenuItem @click.native="testModal()" name="1-2">
-                      <Icon type="search"></Icon>
-                      <span>Cart</span>
-                  </MenuItem>
               </Menu>
           </Sider>
           <!-- <ProductList></ProductList> -->

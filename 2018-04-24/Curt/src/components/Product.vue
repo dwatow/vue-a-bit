@@ -1,6 +1,6 @@
 <template lang="html">
-  <div @click="openModal()" class="productBlock">
-    <div class="imgBlock" :style="{ backgroundImage: 'url(' + '//a.ecimg.tw' + product.picS + ')' }">
+  <div  class="productBlock">
+    <div @click="openModal()" class="imgBlock" :style="{ backgroundImage: 'url(' + '//a.ecimg.tw' + product.picS + ')' }">
 
     </div>
     <div class="productName">
@@ -37,6 +37,7 @@ export default {
       },1000)
     },
     openModal(){
+      console.log('work');
       let info = {
         show:true,
         message: this.product.describe

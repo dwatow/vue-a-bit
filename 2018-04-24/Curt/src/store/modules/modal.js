@@ -1,6 +1,6 @@
 const modal = {
   state: {
-    show:'',
+    show:false,
     message:''
   },
   mutations: {
