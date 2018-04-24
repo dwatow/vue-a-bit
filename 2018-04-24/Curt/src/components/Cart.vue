@@ -2,7 +2,7 @@
   <div class="cart">
     <ul>
       <template  v-for="product in products">
-        <li>
+        <li @click="openModal(product)">
           {{product.name}}
         </li>
       </template>
@@ -27,6 +27,15 @@ export default {
   computed:{
     products(){
       return this.$store.state.cart.products
+    }
+  },
+  methods:{
+    openModal(product){
+      let info = {
+        show:true,
+        message: product.describe
+      }
+      this.$store.commit('controlModal',info)
     }
   },
   mounted(){
