@@ -20,8 +20,8 @@ export default {
   mounted() {},
   methods: {
     goTop () {
-      document.body.scrollTop=0;
-      document.documentElement.scrollTop=0;
+      document.documentElement.scrollTop = 200
+      document.body.scrollTop = 200
     }
   },
   watch: {}
