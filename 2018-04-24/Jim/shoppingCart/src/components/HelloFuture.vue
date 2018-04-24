@@ -1,9 +1,7 @@
 <template>
-  <div class="web">
-    
+  <div class="shopping-list">
     <h2>Essential Links</h2>
     <button @click="updateCounter">Click Me</button>
-    
   </div>
 </template>
 
@@ -11,12 +9,12 @@
 
 
 export default {
-  name: 'HelloWorld',
+  name: 'HelloFuture',
   data () {
     return {}
   },
   computed: {
-    total () {    
+    total () {
       return this.$store.state.count
     }
   },
@@ -29,8 +27,8 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="scss" scoped>
-.web {
+<style scoped>
+.shopping-list {
 
 }
 </style>
