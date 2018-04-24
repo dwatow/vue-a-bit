@@ -24,6 +24,11 @@ const mutations = {
     } else {
       state.stuffList.push(goods)
     }
+  },
+  removeStuff (state, goods) {
+    if(state.stuffList.indexOf(goods)+1){
+      state.stuffList.splice(state.stuffList.indexOf(goods), 1)
+    }
   }
 }
 

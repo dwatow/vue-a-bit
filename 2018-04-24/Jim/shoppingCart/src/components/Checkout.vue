@@ -2,7 +2,7 @@
   <div class="checkout">
     <h2>Goods List</h2>
     <ul>
-      <li v-for="item in total"><img :src="`https://a.ecimg.tw/${item.picS}`">{{ item.originPrice }}</li>
+      <li v-for="item in total"><img :src="`https://a.ecimg.tw/${item.picS}`">{{ item.originPrice }} <button @click="removeGoods(item)">移除商品</button> </li>
     </ul>
   </div>
 </template>
@@ -21,8 +21,8 @@ export default {
     }
   },
   methods: {
-    removeGoods (goodId) {
-
+    removeGoods (goods) {
+      this.$store.commit('removeStuff', goods)
     }
   }
 }

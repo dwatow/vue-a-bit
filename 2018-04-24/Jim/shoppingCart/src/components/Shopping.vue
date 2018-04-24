@@ -27,8 +27,6 @@ export default {
   methods: {
     updateCounter (goods) {
       this.$store.commit('addStuff', goods)
-      console.log(this.$store.state.buy.stuffList)
-      this.$store.commit('increment')
     }
   }
 }
