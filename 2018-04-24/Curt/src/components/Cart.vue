@@ -1,8 +1,13 @@
 <template lang="html">
-  <div class="">
-    <template  v-for="product in products">
-      <Product :product="product"></Product>
-    </template>
+  <div class="cart">
+    <ul>
+      <template  v-for="product in products">
+        <li>
+          {{product.name}}
+        </li>
+      </template>
+    </ul>
+
   </div>
 
 </template>
@@ -31,5 +36,11 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
+.cart{
+  font-size: 16px;
+}
+li{
+  list-style: none;
+}
 </style>
