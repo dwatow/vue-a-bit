@@ -13,7 +13,7 @@
             <div class="search-bar"><input type="text" placeholder="輸入關鍵字" ></div>
           </div>
           <div class="navList-right navList-item">
-            <div class="shopping-cart">
+            <div class="shopping-cart" @click="switchComponent('checkout')">
               <div class="shopping-cart-icon">
                 <span>{{ total }}</span>
               </div>
@@ -38,7 +38,7 @@
           </div>
           <div class="content-demo content-item">
             <transition name="fade">
-              <router-view></router-view>
+              <router-view :goods-list="phones"></router-view>
             </transition>
           </div>
         </div>
@@ -78,18 +78,20 @@ export default {
           path: ''
         }
       ],
+      phones: [],
       picked: '',
       showSideBar: false
     }
   },
   mounted () {
-    // axios.get('https://cors-anywhere.herokuapp.com/https://ecshweb.pchome.com.tw/search/v3.3/all/results?q=Apple&page=1&sort=rnk/dc')
-    //   .then(function (response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
+    var vm = this
+    axios.get('https://cors-anywhere.herokuapp.com/https://ecshweb.pchome.com.tw/search/v3.3/all/results?q=Apple&page=1&sort=rnk/dc')
+      .then(function (response) {
+        vm.phones = response.data.prods
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   },
   components: {
     'component-shopping': SHOPPING,
@@ -104,7 +106,7 @@ export default {
   },
   computed: {
     total () {
-      return this.$store.state.count
+      return this.$store.state.buy.stuffList.length
     }
   }
 }

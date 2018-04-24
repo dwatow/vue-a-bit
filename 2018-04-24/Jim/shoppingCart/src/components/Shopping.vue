@@ -1,7 +1,7 @@
 <template>
   <div class="web">
     <ul>
-      <li v-for="item in 10"><img src="http://via.placeholder.com/200x180" alt=""></li>
+      <li v-for="item in goodsList"><img :src="`https://a.ecimg.tw/${item.picS}`" alt="" @click="updateCounter(item)">{{ item.originPrice }}</li>
     </ul>
     <h2>Essential Links</h2>
     <button @click="updateCounter">Click Me</button>
@@ -14,17 +14,21 @@
 
 export default {
   name: 'Shopping',
+  props: ['goodsList'],
   data () {
-    return {}
+    return {
+    }
   },
   computed: {
     total () {
-      return this.$store.state.count
+      return this.$store.state.buy.stuffList.length
     }
   },
   methods: {
-    updateCounter () {
-      this.$store.commit("increment")
+    updateCounter (goods) {
+      this.$store.commit('addStuff', goods)
+      console.log(this.$store.state.buy.stuffList)
+      this.$store.commit('increment')
     }
   }
 }

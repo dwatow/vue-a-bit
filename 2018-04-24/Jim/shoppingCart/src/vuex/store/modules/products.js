@@ -1,33 +1,16 @@
-
 // initial state
-const state = {
-}
+// shape: [{ id, quantity }]
+
+const state = {}
 
 // getters
-const getters = {
-  allProducts: state => state.all
-}
+const getters = {}
 
 // actions
-const actions = {
-  getAllProducts ({ commit }) {
-    shop.getProducts(products => {
-      commit('setProducts', products)
-    })
-  }
-}
+const actions = {}
 
 // mutations
-const mutations = {
-  setProducts (state, products) {
-    state.all = products
-  },
-
-  decrementProductInventory (state, { id }) {
-    const product = state.all.find(product => product.id === id)
-    product.inventory--
-  }
-}
+const mutations = {}
 
 export default {
   state,

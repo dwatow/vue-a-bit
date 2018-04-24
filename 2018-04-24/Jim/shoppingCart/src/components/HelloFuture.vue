@@ -15,12 +15,12 @@ export default {
   },
   computed: {
     total () {
-      return this.$store.state.count
+      return this.$store.state.buy.count
     }
   },
   methods: {
     updateCounter () {
-      this.$store.commit("increment")
+      this.$store.state.buy.commit("increment")
     }
   }
 }

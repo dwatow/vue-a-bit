@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import cart from './modules/cart'
+import cart from './modules/cart.js'
 import products from './modules/products'
 
 
@@ -10,15 +10,7 @@ const debug = process.env.NODE_ENV !== 'production'
 
 export default new Vuex.Store({
   modules: {
-    buy: cart,
-    search: products
-  },
-  state: {
-    count: 0
-  },
-  mutations: {
-    increment (state) {
-      state.count++
-    }
+    'buy': cart,
+    'search': products
   }
 })
