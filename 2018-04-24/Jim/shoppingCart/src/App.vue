@@ -21,8 +21,20 @@
           </div>
         </div>
         <div class="content">
-          <div class="content-filter content-item">
+
+          <div class="content-filter content-item" :class="{'filter-active': showSideBar}">
             I am filter
+            <ul>
+              <label for="one">Price</label>
+              <input type="radio" id="one" value="One" v-model="picked">
+              <br>
+              <label for="two">Class</label>
+              <input type="radio" id="two" value="Two" v-model="picked">
+
+              <br>
+              <span>Picked: {{ picked }}</span>
+            </ul>
+            <div class="filter-tag" @click="showSideBar = !showSideBar">FILTER</div>
           </div>
           <div class="content-demo content-item">
             <transition name="fade">
@@ -38,6 +50,7 @@
 <script>
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 import store from './vuex/store'
 import SHOPPING from '@/components/Shopping'
 import FUTURE from '@/components/HelloFuture'
@@ -64,8 +77,19 @@ export default {
           name: 'More',
           path: ''
         }
-      ]
+      ],
+      picked: '',
+      showSideBar: false
     }
+  },
+  mounted () {
+    // axios.get('https://cors-anywhere.herokuapp.com/https://ecshweb.pchome.com.tw/search/v3.3/all/results?q=Apple&page=1&sort=rnk/dc')
+    //   .then(function (response) {
+    //     console.log(response);
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
   },
   components: {
     'component-shopping': SHOPPING,
@@ -123,7 +147,6 @@ textarea:focus, input:focus{
     position: relative;
     font-size: 24px;
     font-weight: bolder;
-
     .navList-item {
       margin-top: 20px;
       height: 50px;
@@ -226,23 +249,47 @@ textarea:focus, input:focus{
   .content {
     box-sizing: border-box;
     width: 100%;
-    height: calc(100vh - 180px);
     margin: 20px 0px 100px;
-    background-color: orange;
-    padding: 10px;
+    padding: 10px 0px;
     display: flex;
+    position: relative;
     .content-filter {
+      position: relative;
       box-sizing: border-box;
-      width: 20%;
-      border: solid 1px black;
+      background-color: purple;
       font-size: 36px;
       font-weight: bold;
       padding: 10px;
+      margin-right: 10px;
+      transition: all 1s;
+      min-width: 250px;
+      max-width: 250px;
+      &.filter-active {
+        margin-left: -260px;
+      }
+      .filter-tag {
+        width: 40px;
+        height: 80px;
+        position: fixed;
+        border-radius: 0 50% 50% 0;
+        background-color: black;
+        left: 0px;
+        bottom: 15%;
+        transform: translateY(-50%);
+        font-size: 16px;
+        line-height: 40px;
+        writing-mode: vertical-lr;
+        color: white;
+        text-align: center;
+        z-index: 1;
+      }
     }
     .content-demo {
+      width: 100%;
       box-sizing: border-box;
-      width: 80%;
       padding: 10px;
+      background-color: orange;
+      z-index: 0;
     }
   }
 }
