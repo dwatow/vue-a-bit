@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import Shopping from '@/components/Shopping'
 import HelloFuture from '@/components/HelloFuture'
 
 Vue.use(Router)
@@ -8,16 +8,16 @@ Vue.use(Router)
 export default new Router({
   mode: 'history',
   routes: [
-    
+
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'HelloFuture',
+      component: HelloFuture
     },
     {
       path: '/shopping',
-      name: 'HelloFuture',
-      component: HelloFuture
+      name: 'Shopping',
+      component: Shopping
     }
   ]
 })

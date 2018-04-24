@@ -1,11 +1,6 @@
-import shop from '../../api/shop'
-
 // initial state
 // shape: [{ id, quantity }]
-const state = {
-  added: [],
-  checkoutStatus: null
-}
+const state = {}
 
 // getters
 const getters = {

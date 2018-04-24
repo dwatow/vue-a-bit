@@ -3,7 +3,7 @@
     
     <h2>Essential Links</h2>
     <button @click="updateCounter">Click Me</button>
-    
+
   </div>
 </template>
 
@@ -11,12 +11,12 @@
 
 
 export default {
-  name: 'HelloWorld',
+  name: 'Shopping',
   data () {
     return {}
   },
   computed: {
-    total () {    
+    total () {
       return this.$store.state.count
     }
   },

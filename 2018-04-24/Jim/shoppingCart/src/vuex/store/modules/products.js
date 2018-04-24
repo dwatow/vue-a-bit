@@ -1,8 +1,6 @@
-import shop from '../../api/shop'
 
 // initial state
 const state = {
-  all: []
 }
 
 // getters
