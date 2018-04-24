@@ -9,7 +9,7 @@
                   </MenuItem>
                   <MenuItem @click.native="routerPush(2)" name="1-2">
                       <Icon type="search"></Icon>
-                      <span>Cart</span>
+                      <span>Cart({{cartLength}}）</span>
                   </MenuItem>
               </Menu>
           </Sider>
@@ -47,6 +47,9 @@ export default {
       }
   },
   computed: {
+      cartLength() {
+        return this.$store.state.cart.products.length
+      },
       rotateIcon () {
           return [
               'menu-icon',
@@ -72,6 +75,13 @@ export default {
     },
     collapsedSider () {
         this.$refs.side1.toggleCollapse();
+    },
+    testModal(){
+      var info = {
+        show:true,
+        message:'testmessage'
+      }
+      this.$store.commit('controlModal',info)
     }
   },
   mounted(){

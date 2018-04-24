@@ -2,11 +2,13 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 
 import cart from './modules/cart'
+import modal from './modules/modal'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
-    cart
+    cart,
+    modal
   },
   state:{
     count:0
