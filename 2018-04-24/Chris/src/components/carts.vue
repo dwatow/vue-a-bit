@@ -77,7 +77,7 @@ export default {
 
 .carts {
   max-height: 80vh;
-  overflow: auto;
+  /* overflow: auto; */
 }
 
 .fa-shopping-cart {
