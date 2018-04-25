@@ -20,14 +20,14 @@ const getters = {
 const actions = {}
 
 const mutations = {
-  $_add_cart: function (state, item) {
+  $_create_item: function (state, item) {
     return state.items.push(item)
   },
-  increase(state, index){
+  increase_item(state, index){
     state.items[index].quantity++;
     state.items[index].total = state.items[index].price * state.items[index].quantity
   },
-  reduce(state, index){
+  reduce_item(state, index){
     if(state.items[index].quantity > 0){
       state.items[index].quantity--;
       state.items[index].total = state.items[index].price * state.items[index].quantity

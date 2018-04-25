@@ -12,9 +12,9 @@
         <td class="item_name">{{item.name}}</td>
         <td>${{item.price}}</td>
         <td>
-          <button @click="$store.commit('reduce', index)">-</button>
+          <button @click="$store.commit('reduce_item', index)">-</button>
           {{item.quantity}}
-          <button @click="$store.commit('increase', index)">+</button>
+          <button @click="$store.commit('increase_item', index)">+</button>
         </td>
         <td>{{item.total}}</td>
         <td @click="$store.commit('remove_item', index)">移除</td>

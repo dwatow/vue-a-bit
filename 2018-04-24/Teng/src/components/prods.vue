@@ -6,7 +6,7 @@
         <th>價錢</th>
       </tr>
       <tr v-for='prod in prods'
-      @click="add_cart(prod.name, prod.price)">
+      @click="create_item(prod.name, prod.price)">
       <td class="item_name">{{prod.name}}</td>
       <td>${{prod.price}}</td>
     </tr>
@@ -26,7 +26,7 @@ export default{
     this.prods = prods
   },
   methods: {
-    add_cart: function (name, price) {
+    create_item: function (name, price) {
       if(!this.items_contains(name)){
         const new_item = {
           name:  name,
@@ -34,7 +34,7 @@ export default{
           quantity: 0,
           total: 0
         }
-        return this.$store.commit('$_add_cart', new_item)
+        return this.$store.commit('$_create_item', new_item)
       }
     },
     items_contains: function ( name ) {
