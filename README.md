@@ -39,6 +39,13 @@
 - vue
   - component
     - 拆解
+  - vue-router
+    - beforeEach
+    - children path
+  - vuex
+    - actions, promise
+    - getter/mutation(setter)
+    - MC of MVC, components is V of MVC 
 
 練習過的主題
 - 使用 webpack-sample 顯示一個頁面 3/13
@@ -50,14 +57,3 @@
 2. 做了什麼，用了什麼 vue 的技巧
 3. 研究了什麼 webpack 的內容 (plugin, config...)
 4. QA
-
-**yoyo**
-
-
-
-**Tang**
-
-**Chris**
-
-
-**Kevin**
