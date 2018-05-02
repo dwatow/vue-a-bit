@@ -2,7 +2,7 @@
 
 **目標**
 
-- unit test
+- unit test framework
 
 **練習**
 
@@ -13,15 +13,22 @@
 - mocha
   - Chris
   - Kevin
-  - Andy
+  - Yoyo
 - jest
   - Arel
   - Jim
   - Teng
-  - Yoyo
+  - Curt
 
 **活動**
 
-下次聚會時間 5/02 早上十點
-用 webpack 模版，unit test
+下次聚會時間 5/09 早上十點
+用 上次寫的購物車程式 + 指定的 unit test framework
 自己研究的東西!!
+
+testing framework五個重點
+- parameterized tests
+- mocks and stubs
+- test setup and teardown
+- test categorization
+- conditional running of tests
